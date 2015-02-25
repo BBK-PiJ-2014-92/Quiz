@@ -27,4 +27,10 @@ public interface Quiz {
      * @return a list with all the questions
      */
     public List<Question> getQuestions();
+    /**
+     * Replaces the current available questions with a new specified set of questions
+     * @param newQuestions A new set of questions that will replace the old set of questions
+     */
+    public void setQuestions(List<Question> newQuestions);
+
 }
