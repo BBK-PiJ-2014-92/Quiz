@@ -22,4 +22,11 @@ public interface QuizService extends Remote{
      * @return The full details of the winning player of the specified quiz
      */
     public Player closeQuiz(int quizID) throws RemoteException;
+    /**
+     *
+     * Allows the specified player to play a quiz matching the given quiz ID
+     * @param player The player that is going to play a quiz
+     * @param quizID The ID of the quiz about to be played
+     */
+    public void playQuiz(Player player, int quizID);
 }
