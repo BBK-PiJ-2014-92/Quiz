@@ -15,5 +15,16 @@ public interface Quiz {
      *
      * @return the name of the quiz
      */
-    public int getName();
+    public String getName();
+    /**
+     * Sets the name of the quiz to the specified string
+     * @param name The name to be set as the name of the quiz
+     */
+    public void setName(String name);
+    /**
+     * Returns a list with all the questions in the quiz
+     *
+     * @return a list with all the questions
+     */
+    public List<Question> getQuestions();
 }
