@@ -41,4 +41,12 @@ public interface QuizService extends Remote{
      * @param selectedAnswer The answer in which the player has selected
      */
     public boolean isCorrectAnswer(Question currentQuestion, String selectedAnswer) throws RemoteException;
+    /**
+     *
+     * Returns the total score for a given player at a given quiz
+     * @param player The current player
+     * @param quiz The current quiz
+     * @return The total score for a specific player playing a specific quiz
+     */
+    public int totalScore(Player player, Quiz quiz) throws RemoteException;
 }
