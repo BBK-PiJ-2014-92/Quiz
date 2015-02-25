@@ -15,4 +15,11 @@ public interface QuizService extends Remote{
      * @return The ID of the newly created quiz
      */
     public int newQuiz(String quizName, Question... questions) throws RemoteException;
+    /**
+     *
+     * Closes the quiz with the given ID and returns the winner of the specified quiz
+     * @param quizID The ID of the quiz
+     * @return The full details of the winning player of the specified quiz
+     */
+    public Player closeQuiz(int quizID) throws RemoteException;
 }
