@@ -28,5 +28,11 @@ public interface QuizService extends Remote{
      * @param player The player that is going to play a quiz
      * @param quizID The ID of the quiz about to be played
      */
-    public void playQuiz(Player player, int quizID);
+    public void playQuiz(Player player, int quizID) throws RemoteException;
+    /**
+     *
+     * Returns a list of the current available quizzes
+     * @return List of all available quizzes
+     */
+    public List<Quiz> currentQuizzes() throws RemoteException;
 }
