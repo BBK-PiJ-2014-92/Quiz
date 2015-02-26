@@ -3,6 +3,7 @@ package Quiz;
 import Interfaces.Question;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -11,17 +12,12 @@ import java.util.List;
 public class QuestionImpl implements Question, Serializable {
     private String question;
     private String correctAnswer;
-    private List<String> possibleAnswers;
+    private List<String> possibleAnswers = new ArrayList<String>();
 
     public QuestionImpl(String question, String correctAnswer, List<String> possibleAnswers) {
         this.question = question;
         this.correctAnswer = correctAnswer;
-        for(String answer: possibleAnswers) {
-            if (answer.equals(correctAnswer)) {
-                possibleAnswers.remove(answer);
-            }
-        }
-        this.possibleAnswers = possibleAnswers;
+        addPossibleAnswers(possibleAnswers);
     }
     /**
      * Returns the name of the question
