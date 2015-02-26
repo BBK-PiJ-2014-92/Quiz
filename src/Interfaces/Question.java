@@ -39,5 +39,9 @@ public interface Question {
      * @param newPossibleAnswers the new list of possible answers to replace the existing list
      */
     public void setPossibleAnswers(List<String> newPossibleAnswers);
-
+    /**
+     * Adds a list of possible answers to the end of the existing list of possible answers
+     * @param newPossibleAnswers the new list of possible answers to be added to the end of the existing list
+     */
+    public void addPossibleAnswers(List<String> newPossibleAnswers);
 }
