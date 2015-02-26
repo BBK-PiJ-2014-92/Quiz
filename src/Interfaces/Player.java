@@ -1,8 +1,5 @@
 package Interfaces;
 
-import java.util.Set;
-import java.util.TreeMap;
-
 /**
  * Created by Ahmed on 2/26/2015.
  */
@@ -24,22 +21,4 @@ public interface Player {
      * @return the ID of the player
      */
     public int getID();
-    /**
-     * Returns a set of quizzes attempted by the player
-     *
-     * @return a set of quizzes attempted by the player
-     */
-    public Set<Quiz> getQuizzes();
-    /**
-     * Returns the current scores with their corresponding quizzes
-     *
-     * @return a TreeMap of the current scores with their corresponding quizzes
-     */
-    public TreeMap<Quiz, Integer> getCurrentScores();
-    /**
-     * Adds a new score with corresponding quiz to the TreeMap containing the attempted quizzes and their scores
-     * @param quiz The quiz that was attempted
-     * @param score The score that was obtained from the specific quiz
-     */
-    public void addScore(Quiz quiz, int score);
 }
