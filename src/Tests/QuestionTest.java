@@ -21,6 +21,7 @@ public class QuestionTest {
         possibleAnswers.add("Invest it in a timeshare");
         question1 = new QuestionImpl("What can you do with $20?", "Buy several peanuts", possibleAnswers);
     }
+
     @Test
     public void testAddPossibleAnswers() {
         List<String> newPossibleAnswers = new ArrayList<String>();
