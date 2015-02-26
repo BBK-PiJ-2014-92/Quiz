@@ -32,5 +32,16 @@ public interface Quiz {
      * @param newQuestions A new set of questions that will replace the old set of questions
      */
     public void setQuestions(List<Question> newQuestions);
+    /**
+     * Adds new questions to the list of existing questions
+     * @param newQuestions A new set of questions that will be added to the existing set of questions
+     */
+    public void addQuestions(List<Question> newQuestions);
+    /**
+     * Returns a set of players who have attempted this quiz
+     *
+     * @return a set of players who have attempted this quiz
+     */
+    public Set<Player> getPlayers();
 
 }
