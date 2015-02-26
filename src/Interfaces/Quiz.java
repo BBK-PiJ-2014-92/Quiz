@@ -43,5 +43,11 @@ public interface Quiz {
      * @return a set of players who have attempted this quiz
      */
     public Set<Player> getPlayers();
+    /**
+     * Adds a new player with their corresponding score
+     * @param player The player who just attempted this quiz
+     * @param score The score that the specified player just received for this quiz
+     */
+    public void addPlayer(Player player, int score);
 
 }
