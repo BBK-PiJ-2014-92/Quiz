@@ -9,6 +9,20 @@ import java.util.List;
  * Created by Ahmed on 2/26/2015.
  */
 public class QuestionImpl implements Question, Serializable {
+    private String question;
+    private String correctAnswer;
+    private List<String> possibleAnswers;
+
+    public QuestionImpl(String question, String correctAnswer, List<String> possibleAnswers) {
+        this.question = question;
+        this.correctAnswer = correctAnswer;
+        for(String answer: possibleAnswers) {
+            if (answer.equals(correctAnswer)) {
+                throw new IllegalArgumentException("Error! Do not insert the correct answer in the list of possible answers");
+            }
+        }
+        this.possibleAnswers = possibleAnswers;
+    }
     /**
      * Returns the name of the question
      *
