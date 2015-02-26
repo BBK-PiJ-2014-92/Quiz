@@ -1,7 +1,12 @@
 package Server;
 
+import Interfaces.Player;
+import Interfaces.Question;
+import Interfaces.Quiz;
+
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.util.List;
 
 /**
  * Created by Ahmed on 2/25/2015.
