@@ -36,5 +36,10 @@ public interface Player {
      * @return a TreeMap of the current scores with their corresponding quizzes
      */
     public TreeMap<Quiz, Integer> getCurrentScores();
-
+    /**
+     * Adds a new score with corresponding quiz to the TreeMap containing the attempted quizzes and their scores
+     * @param quiz The quiz that was attempted
+     * @param score The score that was obtained from the specific quiz
+     */
+    public void addScore(Quiz quiz, int score);
 }
