@@ -18,7 +18,7 @@ public class QuestionImpl implements Question, Serializable {
         this.correctAnswer = correctAnswer;
         for(String answer: possibleAnswers) {
             if (answer.equals(correctAnswer)) {
-                throw new IllegalArgumentException("Error! Do not insert the correct answer in the list of possible answers");
+                possibleAnswers.remove(answer);
             }
         }
         this.possibleAnswers = possibleAnswers;
@@ -83,6 +83,11 @@ public class QuestionImpl implements Question, Serializable {
      * @param newPossibleAnswers the new list of possible answers to be added to the end of the existing list
      */
     public void addPossibleAnswers(List<String> newPossibleAnswers) {
+        for(String answer: possibleAnswers) {
+            if (answer.equals(correctAnswer)) {
+                newPossibleAnswers.remove(answer);
+            }
+        }
         possibleAnswers.addAll(newPossibleAnswers);
 
     }
