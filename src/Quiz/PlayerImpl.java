@@ -1,9 +1,11 @@
 package Quiz;
 
+import Interfaces.Player;
+
 /**
  * Created by Ahmed on 2/26/2015.
  */
-public class PlayerImpl {
+public class PlayerImpl implements Player {
     private String name;
     private static int IDCOUNT = 0;
     private int id;
@@ -14,7 +16,8 @@ public class PlayerImpl {
         this.id = IDCOUNT;
     }
 
-    public int getId() {
+
+    public int getID() {
         return id;
     }
 
