@@ -83,6 +83,7 @@ public class QuestionImpl implements Question, Serializable {
      * @param newPossibleAnswers the new list of possible answers to be added to the end of the existing list
      */
     public void addPossibleAnswers(List<String> newPossibleAnswers) {
+        possibleAnswers.addAll(newPossibleAnswers);
 
     }
 }
