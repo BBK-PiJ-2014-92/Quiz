@@ -29,7 +29,7 @@ public class QuestionImpl implements Question, Serializable {
      * @return the name of the question
      */
     public String getQuestionName() {
-        return null;
+        return question;
     }
 
     /**
@@ -38,7 +38,7 @@ public class QuestionImpl implements Question, Serializable {
      * @param questionName the name of the question to be set
      */
     public void setQuestionName(String questionName) {
-
+        question = questionName;
     }
 
     /**
@@ -47,7 +47,7 @@ public class QuestionImpl implements Question, Serializable {
      * @return the correct answer of the question
      */
     public String getCorrectAnswer() {
-        return null;
+        return correctAnswer;
     }
 
     /**
@@ -56,7 +56,7 @@ public class QuestionImpl implements Question, Serializable {
      * @param answer the answer for the question
      */
     public void setCorrectAnswer(String answer) {
-
+        correctAnswer = answer;
     }
 
     /**
@@ -65,7 +65,7 @@ public class QuestionImpl implements Question, Serializable {
      * @return a list of possible answers for the question
      */
     public List<String> getPossibleAnswers() {
-        return null;
+        return possibleAnswers;
     }
 
     /**
@@ -74,7 +74,7 @@ public class QuestionImpl implements Question, Serializable {
      * @param newPossibleAnswers the new list of possible answers to replace the existing list
      */
     public void setPossibleAnswers(List<String> newPossibleAnswers) {
-
+        possibleAnswers = newPossibleAnswers;
     }
 
     /**
