@@ -28,6 +28,11 @@ public class ScoreImpl implements Score, Serializable, Comparable<Score>{
 
     @Override
     public int compareTo(Score o) {
-        return 0;
+        int scoreDiff = o.getScore() - score;
+        if(scoreDiff != 0) {
+            return scoreDiff;
+        }else {
+            return name.compareToIgnoreCase(o.getName());
+        }
     }
 }
