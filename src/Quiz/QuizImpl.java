@@ -5,10 +5,7 @@ import Interfaces.Question;
 import Interfaces.Quiz;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
-import java.util.TreeMap;
+import java.util.*;
 
 /**
  * Created by Ahmed on 2/27/2015.
@@ -25,7 +22,9 @@ public class QuizImpl implements Quiz, Serializable {
         IDCOUNT++;
         this.quizID = IDCOUNT;
         questions = new ArrayList<Question>();
-        highScores = new TreeMap<Player, Integer>();
+        HashMap<Player, Integer> map = new HashMap<Player, Integer>();
+        ScoreComparator comparator = new ScoreComparator(map);
+        highScores = new TreeMap<Player, Integer>(comparator);
     }
 
     public TreeMap<Player, Integer> getHighScores() {
