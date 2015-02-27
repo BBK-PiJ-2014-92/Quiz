@@ -24,7 +24,7 @@ public class QuizTest {
         answers1.add("RERO RERO RERO!");
         answers1.add("I don't know");
         Question q1 = new QuestionImpl("Can a monkey fight a man?", "MUDA MUDA MUDA!", answers1 );
-        quiz = new QuizImpl(); //Left because unsure how constructor will look like
+        quiz = new QuizImpl("The Art of Muda!");
         answers = new ArrayList<String>();
     }
 
