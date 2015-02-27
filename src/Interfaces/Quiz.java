@@ -2,7 +2,6 @@ package Interfaces;
 
 import java.util.List;
 import java.util.Set;
-import java.util.TreeMap;
 
 /**
  * Created by Ahmed on 2/25/2015.
@@ -55,10 +54,10 @@ public interface Quiz {
      */
     public void addPlayer(Score player, int score);
     /**
-     * Returns a Map for the current HighScore for this quiz
+     * Returns a Set for the current HighScore for this quiz
      *
-     * @return A Map of the current HighScore for this quiz
+     * @return A Set of the current HighScore for this quiz
      */
-    public TreeMap<Score, Integer> getHighScores();
+    public Set<Score> getHighScores();
 
 }
