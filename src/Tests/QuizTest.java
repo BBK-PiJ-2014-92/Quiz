@@ -44,12 +44,12 @@ public class QuizTest {
     }
 
     @Test
-    public void testGetPlayers() {
+    public void testAddPlayer() {
 
     }
 
     @Test
-    public void testAddPlayer() {
+    public void testGetPlayers() {
 
     }
 
