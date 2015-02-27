@@ -11,11 +11,6 @@ public interface Score {
      */
     public String getName();
     /**
-     * Sets the name of the player
-     * @param name The name of the player to be set
-     */
-    public void setName(String name);
-    /**
      * Returns the ID of the player
      *
      * @return the ID of the player
