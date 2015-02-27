@@ -1,6 +1,6 @@
 package Server;
 
-import Interfaces.Player;
+import Interfaces.Score;
 import Interfaces.Question;
 import Interfaces.Quiz;
 
@@ -26,14 +26,14 @@ public interface QuizService extends Remote{
      * @param quizID The ID of the quiz
      * @return The full details of the winning player of the specified quiz
      */
-    public Player closeQuiz(int quizID) throws RemoteException;
+    public Score closeQuiz(int quizID) throws RemoteException;
     /**
      *
-     * Allows the specified player to play a quiz matching the given quiz ID
-     * @param player The player that is going to play a quiz
+     * Allows the specified score to play a quiz matching the given quiz ID
+     * @param score The score that is going to play a quiz
      * @param quizID The ID of the quiz about to be played
      */
-    public void playQuiz(Player player, int quizID) throws RemoteException;
+    public void playQuiz(Score score, int quizID) throws RemoteException;
     /**
      *
      * Returns a list of the current available quizzes
@@ -48,10 +48,10 @@ public interface QuizService extends Remote{
     public boolean isCorrectAnswer(Question currentQuestion, String selectedAnswer) throws RemoteException;
     /**
      *
-     * Returns the total score for a given player at a given quiz
-     * @param player The current player
+     * Returns the total score for a given score at a given quiz
+     * @param score The current score
      * @param quiz The current quiz
-     * @return The total score for a specific player playing a specific quiz
+     * @return The total score for a specific score playing a specific quiz
      */
-    public int totalScore(Player player, Quiz quiz) throws RemoteException;
+    public int totalScore(Score score, Quiz quiz) throws RemoteException;
 }

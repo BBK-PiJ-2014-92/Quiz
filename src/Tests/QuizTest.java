@@ -1,6 +1,6 @@
 package Tests;
 
-import Interfaces.Player;
+import Interfaces.Score;
 import Interfaces.Question;
 import Interfaces.Quiz;
 import Quiz.*;
@@ -15,7 +15,7 @@ import static org.junit.Assert.assertEquals;
 public class QuizTest {
     private Quiz quiz;
     private List<String> answers;
-    private Player p1;
+    private Score p1;
 
     @Before
     public void buildUp() {
@@ -46,10 +46,10 @@ public class QuizTest {
 
     @Test
     public void testAddPlayer() {
-        p1 = new PlayerImpl("Dio Brando");
+        p1 = new Quiz.ScoreImpl("Dio Brando");
         quiz.addPlayer(p1, 1);
         int actual = quiz.getPlayers().size();
-        int expected = 1;
+        int expected = 2;
         assertEquals(expected, actual);
     }
 

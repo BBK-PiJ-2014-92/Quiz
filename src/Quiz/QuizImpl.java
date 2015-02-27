@@ -1,6 +1,6 @@
 package Quiz;
 
-import Interfaces.Player;
+import Interfaces.Score;
 import Interfaces.Question;
 import Interfaces.Quiz;
 
@@ -15,17 +15,17 @@ public class QuizImpl implements Quiz, Serializable {
     private int quizID;
     private static int IDCOUNT = 0;
     private List<Question> questions;
-    private TreeMap<Player, Integer> highScores;
+    private TreeMap<Score, Integer> highScores;
 
     public QuizImpl(String name) {
         this.name = name;
         IDCOUNT++;
         this.quizID = IDCOUNT;
         questions = new ArrayList<Question>();
-        highScores = new TreeMap<Player, Integer>();
+        highScores = new TreeMap<Score, Integer>();
     }
 
-    public TreeMap<Player, Integer> getHighScores() {
+    public TreeMap<Score, Integer> getHighScores() {
         return highScores;
     }
 
@@ -49,11 +49,11 @@ public class QuizImpl implements Quiz, Serializable {
         this.questions.addAll(newQuestions);
     }
 
-    public Set<Player> getPlayers() {
+    public Set<Score> getPlayers() {
         return null;
     }
 
-    public void addPlayer(Player player, int score) {
+    public void addPlayer(Score player, int score) {
         highScores.put(player, score);
     }
 

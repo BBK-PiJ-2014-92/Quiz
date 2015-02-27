@@ -1,16 +1,18 @@
 package Quiz;
 
-import Interfaces.Player;
+import Interfaces.Score;
+
+import java.io.Serializable;
 
 /**
  * Created by Ahmed on 2/26/2015.
  */
-public class PlayerImpl implements Player {
+public class ScoreImpl implements Score, Serializable {
     private String name;
     private static int IDCOUNT = 0;
     private int id;
 
-    public PlayerImpl(String name) {
+    public ScoreImpl(String name) {
         this.name =  name;
         IDCOUNT++;
         this.id = IDCOUNT;
