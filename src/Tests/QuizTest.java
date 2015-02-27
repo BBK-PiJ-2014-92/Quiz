@@ -50,9 +50,4 @@ public class QuizTest {
         assertEquals(expected, actual);
     }
 
-
-    @Test
-    public void testGetHighScores() {
-
-    }
 }
