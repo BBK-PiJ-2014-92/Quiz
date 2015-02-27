@@ -15,17 +15,17 @@ public class QuizImpl implements Quiz, Serializable {
     private int quizID;
     private static int IDCOUNT = 0;
     private List<Question> questions;
-    private List<Score> highScores;
+    private Set<Score> highScores;
 
     public QuizImpl(String name) {
         this.name = name;
         IDCOUNT++;
         this.quizID = IDCOUNT;
         questions = new ArrayList<Question>();
-        highScores = new ArrayList<Score>();
+        highScores = new TreeSet<Score>();
     }
 
-    public List<Score> getHighScores() {
+    public Set<Score> getHighScores() {
         return highScores;
     }
 

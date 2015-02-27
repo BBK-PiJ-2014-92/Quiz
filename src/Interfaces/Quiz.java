@@ -1,6 +1,7 @@
 package Interfaces;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by Ahmed on 2/25/2015.
@@ -52,10 +53,10 @@ public interface Quiz {
      */
     public void addScore(Score score);
     /**
-     * Returns a list of the current HighScore for this quiz
+     * Returns a set of the current HighScore for this quiz
      *
-     * @return A list of the current HighScore for this quiz
+     * @return A set of the current HighScore for this quiz
      */
-    public List<Score> getHighScores();
+    public Set<Score> getHighScores();
 
 }
