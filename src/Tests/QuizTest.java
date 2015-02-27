@@ -3,24 +3,22 @@ package Tests;
 import Interfaces.Player;
 import Interfaces.Question;
 import Interfaces.Quiz;
-import Quiz.PlayerImpl;
-import Quiz.QuestionImpl;
-import Quiz.QuizImpl;
+import Quiz.*;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class QuizTest {
     private Quiz quiz;
     private List<String> answers;
+    private Player p1;
 
     @Before
     public void buildUp() {
-        Player p1 = new PlayerImpl("Dio Brando");
         List<String> answers1 = new ArrayList<String>();
         answers1.add("ORA ORA ORA!");
         answers1.add("RERO RERO RERO!");
@@ -45,13 +43,13 @@ public class QuizTest {
 
     @Test
     public void testAddPlayer() {
-
+        p1 = new PlayerImpl("Dio Brando");
+        quiz.addPlayer(p1, 1);
+        int actual = quiz.getPlayers().size();
+        int expected = 1;
+        assertEquals(expected, actual);
     }
 
-    @Test
-    public void testGetPlayers() {
-
-    }
 
     @Test
     public void testGetHighScores() {
