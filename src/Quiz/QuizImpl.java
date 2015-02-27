@@ -5,6 +5,7 @@ import Interfaces.Question;
 import Interfaces.Quiz;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeMap;
@@ -19,27 +20,30 @@ public class QuizImpl implements Quiz, Serializable {
     private List<Question> questions;
     private TreeMap<Player, Integer> highScores;
 
+    public QuizImpl(String name) {
+        this.name = name;
+        IDCOUNT++;
+        this.quizID = IDCOUNT;
+        questions = new ArrayList<Question>();
+        highScores = new TreeMap<Player, Integer>();
+    }
+
     public TreeMap<Player, Integer> getHighScores() {
         return highScores;
     }
 
-
-    @Override
     public String getName() {
         return name;
     }
 
-    @Override
     public void setName(String name) {
         this.name = name;
     }
 
-    @Override
     public List<Question> getQuestions() {
         return questions;
     }
 
-    @Override
     public void setQuestions(List<Question> questions) {
         this.questions = questions;
     }
