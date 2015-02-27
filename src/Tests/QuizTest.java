@@ -46,10 +46,9 @@ public class QuizTest {
 
     @Test
     public void testAddPlayer() {
-        p1 = new Quiz.ScoreImpl("Dio Brando");
-        quiz.addPlayer(p1, 1);
+        p1 = new ScoreImpl("Dio Brando", 1);
         int actual = quiz.getPlayers().size();
-        int expected = 2;
+        int expected = 1;
         assertEquals(expected, actual);
     }
 
