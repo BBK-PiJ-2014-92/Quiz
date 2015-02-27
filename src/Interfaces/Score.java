@@ -20,5 +20,5 @@ public interface Score {
      *
      * @return the ID of the player
      */
-    public int getID();
+    public int getScore();
 }

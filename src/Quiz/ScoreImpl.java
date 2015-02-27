@@ -9,18 +9,16 @@ import java.io.Serializable;
  */
 public class ScoreImpl implements Score, Serializable {
     private String name;
-    private static int IDCOUNT = 0;
-    private int id;
+    private int score;
 
-    public ScoreImpl(String name) {
+    public ScoreImpl(String name, int score) {
         this.name =  name;
-        IDCOUNT++;
-        this.id = IDCOUNT;
+        this.score = score;
     }
 
 
-    public int getID() {
-        return id;
+    public int getScore() {
+        return score;
     }
 
     public String getName() {
