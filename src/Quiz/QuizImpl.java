@@ -22,9 +22,7 @@ public class QuizImpl implements Quiz, Serializable {
         IDCOUNT++;
         this.quizID = IDCOUNT;
         questions = new ArrayList<Question>();
-        HashMap<Player, Integer> map = new HashMap<Player, Integer>();
-        ScoreComparator comparator = new ScoreComparator(map);
-        highScores = new TreeMap<Player, Integer>(comparator);
+        highScores = new TreeMap<Player, Integer>();
     }
 
     public TreeMap<Player, Integer> getHighScores() {
