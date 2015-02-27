@@ -45,14 +45,13 @@ public interface Quiz {
      *
      * @return a set of players who have attempted this quiz
      */
-    public Set<Score> getPlayers();
+    public List<String> getPlayers();
     /**
-     * Adds a new player with their corresponding score. It will sort the current TreeMap with the highest scores,
-     * and will replace the current score for the player if said player achieves a higher score
-     * @param player The player who just attempted this quiz
-     * @param score The score that the specified player just received for this quiz
+     * Adds a new player with their corresponding score. It will sort the players with the highest scores. The highscores
+     * will not contain duplicates
+     * @param score The name of the player and the score that player achieved
      */
-    public void addPlayer(Score player, int score);
+    public void addScore(Score score);
     /**
      * Returns a Set for the current HighScore for this quiz
      *

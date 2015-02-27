@@ -49,12 +49,16 @@ public class QuizImpl implements Quiz, Serializable {
         this.questions.addAll(newQuestions);
     }
 
-    public Set<Score> getPlayers() {
-        return null;
+    public List<String> getPlayers() {
+        List<String> players = new ArrayList<String>();
+        for (Score score : highScores) {
+            players.add(score.getName());
+        }
+        return players;
     }
 
-    public void addPlayer(Score player, int score) {
-        highScores.put(player, score);
+    public void addScore(Score score {
+        highScores.add(score);
     }
 
     public int getID() {
