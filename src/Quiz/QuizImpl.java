@@ -48,6 +48,18 @@ public class QuizImpl implements Quiz, Serializable {
         this.questions = questions;
     }
 
+    public void addQuestions(List<Question> newQuestions) {
+        this.questions.addAll(newQuestions);
+    }
+
+    public Set<Player> getPlayers() {
+        return null;
+    }
+
+    public void addPlayer(Player player, int score) {
+        highScores.put(player, score);
+    }
+
     public int getID() {
         return quizID;
     }
