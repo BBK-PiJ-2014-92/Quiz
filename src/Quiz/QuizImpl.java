@@ -57,7 +57,7 @@ public class QuizImpl implements Quiz, Serializable {
         return players;
     }
 
-    public void addScore(Score score {
+    public void addScore(Score score) {
         highScores.add(score);
     }
 
