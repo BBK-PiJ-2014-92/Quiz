@@ -15,7 +15,7 @@ public class QuizImpl implements Quiz, Serializable {
     private int quizID;
     private static int IDCOUNT = 0;
     private List<Question> questions;
-    private Set<Score> highScores;
+    private TreeSet<Score> highScores;
     private boolean closed;
 
     public QuizImpl(String name) {
@@ -27,7 +27,7 @@ public class QuizImpl implements Quiz, Serializable {
         closed = true;
     }
 
-    public Set<Score> getHighScores() {
+    public TreeSet<Score> getHighScores() {
         return highScores;
     }
 
