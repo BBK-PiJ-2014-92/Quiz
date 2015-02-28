@@ -1,7 +1,7 @@
 package Interfaces;
 
 import java.util.List;
-import java.util.Set;
+import java.util.TreeSet;
 
 /**
  * Created by Ahmed on 2/25/2015.
@@ -57,7 +57,7 @@ public interface Quiz {
      *
      * @return A set of the current HighScore for this quiz
      */
-    public Set<Score> getHighScores();
+    public TreeSet<Score> getHighScores();
     /**
      * Returns whether the quiz is closed
      *
