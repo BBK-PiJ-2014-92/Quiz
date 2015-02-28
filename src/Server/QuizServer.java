@@ -130,6 +130,10 @@ public class QuizServer extends UnicastRemoteObject implements QuizService {
         return quizzes;
     }
 
+    public void setQuizzes(List<Quiz> quizzes) throws RemoteException {
+        this.quizzes = quizzes;
+    }
+
     public boolean isCorrectAnswer(Question currentQuestion, String selectedAnswer)  {
         return currentQuestion.getCorrectAnswer().equals(selectedAnswer);
     }

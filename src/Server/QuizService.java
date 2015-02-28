@@ -53,6 +53,13 @@ public interface QuizService extends Remote{
      * @return List of all available quizzes
      */
     public List<Quiz> currentQuizzes() throws RemoteException;
+
+    /**
+     * Sets the current list of quizzes with the specified list
+     * @param quizzes The list that will replace the current list
+     * @throws RemoteException
+     */
+    public void setQuizzes(List<Quiz> quizzes) throws RemoteException;
     /**
      * Returns whether the answer selected by the player is the correct answer to the question
      * @param currentQuestion The question that is currently being asked
