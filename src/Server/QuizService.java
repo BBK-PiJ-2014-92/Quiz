@@ -33,7 +33,13 @@ public interface QuizService extends Remote{
      * @param quizID The ID of the quiz
      * @return The full details of the winning player of the specified quiz
      */
-    public Score closeQuiz(int quizID, Score score) throws RemoteException;
+    public Score closeQuiz(int quizID) throws RemoteException;
+    /**
+     *
+     * Opens the quiz with the given ID
+     * @param quizID The ID of the quiz
+     */
+    public void openQuiz(int quizID) throws RemoteException;
     /**
      *
      * Allows the specified score to play a quiz matching the given quiz ID

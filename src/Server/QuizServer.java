@@ -67,12 +67,16 @@ public class QuizServer extends UnicastRemoteObject implements QuizService {
         }
     }
 
-    public Score closeQuiz(int quizID, Score score) throws RemoteException {
+    public Score closeQuiz(int quizID) throws RemoteException {
         Quiz chosenQuiz = getQuiz(quizID);
         if (chosenQuiz != null) {
             chosenQuiz.setClosed(true);
 
         }
+    }
+
+    public void openQuiz(int quizID) throws RemoteException {
+
     }
 
     public void playQuiz(Score score, int quizID) throws RemoteException {
