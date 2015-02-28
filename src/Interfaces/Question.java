@@ -44,4 +44,10 @@ public interface Question {
      * @param newPossibleAnswers the new list of possible answers to be added to the end of the existing list
      */
     public void addPossibleAnswers(List<String> newPossibleAnswers);
+    /**
+     * Returns a list of answers to choose from of any size, as long as there are enough answers available
+     * @param size The number of choices the player could make
+     * @return A list of answers the player can choose from in random order with a specified size
+     */
+    public List<String> createChoices(int size);
 }

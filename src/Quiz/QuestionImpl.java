@@ -4,6 +4,7 @@ import Interfaces.Question;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -86,5 +87,21 @@ public class QuestionImpl implements Question, Serializable {
         }
         possibleAnswers.addAll(newPossibleAnswers);
 
+    }
+
+    public List<String> createChoices(int size) {
+        List<String> result = new ArrayList<String>();
+        Collections.shuffle(possibleAnswers);
+        if (possibleAnswers.isEmpty()) {
+            throw new IllegalStateException("There are no possible answers to choose from");
+        }else if (correctAnswer == null) {
+            throw new IllegalStateException("Please set the correct answer");
+        }
+        for (int i = 0; i < size - 2; i++) { //Size is subtracted by 2 to prevent NullPointerExceptions from occurring and to allow the actual answer to be added in
+            result.add(possibleAnswers.get(i));
+        }
+        result.add(correctAnswer);
+        Collections.shuffle(result);
+        return result;
     }
 }
