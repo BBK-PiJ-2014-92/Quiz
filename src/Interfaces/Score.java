@@ -11,9 +11,14 @@ public interface Score {
      */
     public String getName();
     /**
-     * Returns the ID of the player
+     * Returns the score of the player
      *
-     * @return the ID of the player
+     * @return the score of the player
      */
     public int getScore();
+    /**
+     * Sets the score of the player
+     * @param score The new score to be set for the player
+     */
+    public void setScore(int score);
 }

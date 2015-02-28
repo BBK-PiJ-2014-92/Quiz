@@ -25,6 +25,10 @@ public class ScoreImpl implements Score, Serializable, Comparable<Score>{
         return name;
     }
 
+    public void setScore(int score) {
+        this.score = score;
+    }
+
 
     @Override
     public int compareTo(Score o) {
