@@ -26,8 +26,12 @@ public class QuizServer extends UnicastRemoteObject implements QuizService {
             try {
                 FileInputStream fis = new FileInputStream(newFile);
                 ObjectInputStream input = new ObjectInputStream(fis);
-                this.quizzes = (ArrayList<Quiz>) input.readObject();
-                System.out.println("Quizzes successfully added");
+                Object o = input.readObject();
+                if (o instanceof ArrayList<?>) {
+                    this.quizzes = (ArrayList<Quiz>) o;
+                    System.out.println("Quizzes successfully added");
+                }
+
                 input.close();
                 fis.close();
             } catch (FileNotFoundException e) {
@@ -90,7 +94,12 @@ public class QuizServer extends UnicastRemoteObject implements QuizService {
     }
 
     public void playQuiz(Score score, int quizID) throws RemoteException {
-
+        Quiz chosenQuiz = getQuiz(quizID);
+        if (chosenQuiz != null) {
+            if (!chosenQuiz.getClosed()) {
+                
+            }
+        }
     }
 
     public List<Quiz> currentQuizzes() throws RemoteException {
