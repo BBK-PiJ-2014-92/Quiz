@@ -11,7 +11,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import java.io.File;
+import java.io.*;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
@@ -134,9 +134,20 @@ public class QuizServerTest {
         assertEquals(expected, actual);
     }
 
-
+    @SuppressWarnings("unchecked")
     @Test
-    public void testFlush()  {
+    public void testFlush() throws IOException, ClassNotFoundException {
+        server.flush();
 
+        File newFile = new File("Quiz.txt");
+        boolean actual = newFile.exists();
+        assertTrue(actual);
+
+        FileInputStream fis = new FileInputStream(newFile);
+        ObjectInputStream input = new ObjectInputStream(fis);
+        Object o = input.readObject();
+        List<Quiz> actualObject = (ArrayList<Quiz>) o;
+        List<Quiz> expected = server.currentQuizzes();
+        assertEquals(expected, actualObject);
     }
 }
