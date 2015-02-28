@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 public class QuizServerTest {
@@ -117,8 +118,10 @@ public class QuizServerTest {
     }
 
     @Test
-    public void testOpenQuiz() {
-
+    public void testOpenQuiz() throws RemoteException {
+        server.openQuiz(1);
+        boolean actual = server.getQuiz(1).getClosed();
+        assertFalse(actual);
     }
 
     @Test
