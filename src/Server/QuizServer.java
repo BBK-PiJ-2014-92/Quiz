@@ -49,6 +49,7 @@ public class QuizServer extends UnicastRemoteObject implements QuizService {
     public int newQuiz(String quizName) {
         Quiz quiz = new QuizImpl(quizName);
         quizzes.add(quiz);
+        flush();
         return quiz.getID();
 
     }
@@ -67,6 +68,7 @@ public class QuizServer extends UnicastRemoteObject implements QuizService {
         Quiz chosenQuiz = getQuiz(id);
         if (chosenQuiz != null) {
             chosenQuiz.addQuestions(questions);
+            flush();
             return true;
         }else{
             throw new IllegalArgumentException("The Quiz with ID " + id + " does not exist");
@@ -78,6 +80,7 @@ public class QuizServer extends UnicastRemoteObject implements QuizService {
         if (chosenQuiz != null) {
             chosenQuiz.setClosed(true);
             TreeSet<Score> highScores = chosenQuiz.getHighScores();
+            flush();
             return highScores.isEmpty() ? null : highScores.first();
         }else {
             throw new IllegalArgumentException("The Quiz with ID " + quizID + " does not exist");
@@ -88,6 +91,7 @@ public class QuizServer extends UnicastRemoteObject implements QuizService {
         Quiz chosenQuiz = getQuiz(quizID);
         if (chosenQuiz != null) {
             chosenQuiz.setClosed(false);
+            flush();
         }else {
             throw new IllegalArgumentException("The Quiz with ID " + quizID + " does not exist");
         }
@@ -118,6 +122,7 @@ public class QuizServer extends UnicastRemoteObject implements QuizService {
         }else {
             throw new IllegalArgumentException("This Quiz with ID " + quizID + " does not exist");
         }
+        flush();
         return score;
     }
 
@@ -131,23 +136,18 @@ public class QuizServer extends UnicastRemoteObject implements QuizService {
 
     public void flush()  {
         File newFile = new File("Quiz.txt");
-        if(newFile.exists()){
-            newFile.delete();
-        }else {
-            try {
-                FileOutputStream fos = new FileOutputStream(newFile);
-                ObjectOutputStream output = new ObjectOutputStream(fos);
-                output.writeObject(quizzes);
-                System.out.println("Quizzes successfully written");
-                output.close();
-                fos.close();
-            } catch (FileNotFoundException e) {
+        try {
+            FileOutputStream fos = new FileOutputStream(newFile);
+            ObjectOutputStream output = new ObjectOutputStream(fos);
+            output.reset(); // Similar to deleting the file, this just resets what is currently available in the file
+            output.writeObject(quizzes);
+            System.out.println("Quizzes successfully written");
+            output.close();
+            fos.close();
+        } catch (FileNotFoundException e) {
                 e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-
     }
-
 }
