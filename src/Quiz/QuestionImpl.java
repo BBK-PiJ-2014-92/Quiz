@@ -104,4 +104,31 @@ public class QuestionImpl implements Question, Serializable {
         Collections.shuffle(result);
         return result;
     }
+
+    @Override
+    public String toString() {
+        return "Question{" +
+                "question='" + question + '\'' +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof QuestionImpl)) return false;
+
+        QuestionImpl question1 = (QuestionImpl) o;
+
+        if (!correctAnswer.equals(question1.correctAnswer)) return false;
+        if (!question.equals(question1.question)) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = question.hashCode();
+        result = 31 * result + correctAnswer.hashCode();
+        return result;
+    }
 }

@@ -29,6 +29,30 @@ public class ScoreImpl implements Score, Serializable, Comparable<Score>{
         this.score = score;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof ScoreImpl)) return false;
+
+        ScoreImpl score = (ScoreImpl) o;
+
+        if (!name.equals(score.name)) return false;
+
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Score{" +
+                "name='" + name + '\'' +
+                ", score=" + score +
+                '}';
+    }
+
+    @Override
+    public int hashCode() {
+        return name.hashCode();
+    }
 
     @Override
     public int compareTo(Score o) {

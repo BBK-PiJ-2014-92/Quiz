@@ -74,4 +74,32 @@ public class QuizImpl implements Quiz, Serializable {
     public int getID() {
         return quizID;
     }
+
+    @Override
+    public String toString() {
+        return "Quiz{" +
+                "quizID=" + quizID +
+                ", name='" + name + '\'' +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof QuizImpl)) return false;
+
+        QuizImpl quiz = (QuizImpl) o;
+
+        if (quizID != quiz.quizID) return false;
+        if (!name.equals(quiz.name)) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = name.hashCode();
+        result = 31 * result + quizID;
+        return result;
+    }
 }
