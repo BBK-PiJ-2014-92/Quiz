@@ -131,11 +131,6 @@ public class QuizServerTest {
 
 
     @Test
-    public void testIsCorrectAnswer()  {
-
-    }
-
-    @Test
     public void testFlush()  {
 
     }
