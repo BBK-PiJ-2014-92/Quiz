@@ -103,7 +103,7 @@ public class QuizServer extends UnicastRemoteObject implements QuizService {
         int score = 0;
         if (chosenQuiz != null) {
             if (!chosenQuiz.getClosed()) {
-                for (int i = 0; i < playerChoices.size() - 1; i++) {
+                for (int i = 0; i < playerChoices.size(); i++) {
                     if (isCorrectAnswer(chosenQuiz.getQuestions().get(i), playerChoices.get(i))) {
                         score++;
                     }
