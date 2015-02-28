@@ -80,6 +80,12 @@ public class QuizServer extends UnicastRemoteObject implements QuizService {
     }
 
     public void openQuiz(int quizID) throws RemoteException {
+        Quiz chosenQuiz = getQuiz(quizID);
+        if (chosenQuiz != null) {
+            chosenQuiz.setClosed(false);
+        }else {
+            throw new IllegalArgumentException("The Quiz with ID " + quizID + " does not exist");
+        }
 
     }
 
