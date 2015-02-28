@@ -1,9 +1,11 @@
 package Tests;
 
+import Server.QuizService;
 import org.junit.Before;
 import org.junit.Test;
 
-public class QuizServiceTest {
+public class QuizServerTest {
+    private QuizService server;
 
     @Before
     public void setUp() {
@@ -16,7 +18,17 @@ public class QuizServiceTest {
     }
 
     @Test
+    public void testAddQuestion(){
+
+    }
+
+    @Test
     public void testCloseQuiz()  {
+
+    }
+
+    @Test
+    public void testOpenQuiz() {
 
     }
 
@@ -36,7 +48,7 @@ public class QuizServiceTest {
     }
 
     @Test
-    public void testTotalScore()  {
+    public void testFlush()  {
 
     }
 }
