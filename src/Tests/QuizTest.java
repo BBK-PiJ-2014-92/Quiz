@@ -53,5 +53,21 @@ public class QuizTest {
         assertEquals(expected, actual);
     }
 
+    @Test
+    public void testGetPlayers() {
+        p1 = new ScoreImpl("Dio Brando" , 1);
+        Score p2 = new ScoreImpl("Joseph Joestar", 1);
+        Score p3 = new ScoreImpl("Jotaro Kujo" , 1);
+        quiz.addScore(p1);
+        quiz.addScore(p2);
+        quiz.addScore(p3);
+        List<String> actual = quiz.getPlayers();
+        List<String> expected = new ArrayList<String>();
+        expected.add("Dio Brando");
+        expected.add("Joseph Joestar");
+        expected.add("Jotaro Kujo");
+        assertEquals(expected, actual);
+    }
+
 
 }
