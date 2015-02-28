@@ -17,11 +17,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class QuizServerTest {
     private static QuizService server;
     private static Quiz quiz1;
     private static Quiz quiz2;
+    List<String> possibleAnswers;
+    List<Question> questions;
+    List<Quiz> quizzes;
 
     @BeforeClass
     public static void setUp() throws RemoteException {
@@ -31,10 +35,9 @@ public class QuizServerTest {
     }
     @Before
     public void buildUp() throws RemoteException {
-        List<String> possibleAnswers = new ArrayList<String>();
-        List<Question> questions = new ArrayList<Question>();
-        List<Quiz> quizzes = new ArrayList<Quiz>();
-
+        possibleAnswers = new ArrayList<String>();
+        questions = new ArrayList<Question>();
+        quizzes = new ArrayList<Quiz>();
         possibleAnswers.add("If you don't get that mask back soon, something terrible will happen!");
         possibleAnswers.add("I...I shall consume. Consume... consume everything...");
         possibleAnswers.add("A puppet that can no longer be used is mere garbage. This puppet's role has just ended....");
@@ -87,8 +90,23 @@ public class QuizServerTest {
     }
 
     @Test
-    public void testAddQuestion(){
+    public void testAddQuestion() throws RemoteException {
+        questions = new ArrayList<Question>();
+        possibleAnswers = new ArrayList<String>();
+        possibleAnswers.add("1999");
+        possibleAnswers.add("2001");
+        possibleAnswers.add("1998");
+        Question q1 = new QuestionImpl("What year did Majora's Mask release?","2000", possibleAnswers);
+        questions.add(q1);
 
+        possibleAnswers.clear();
+        possibleAnswers.add("Flute");
+        possibleAnswers.add("Violin");
+        possibleAnswers.add("Trumpet");
+        Question q2 = new QuestionImpl("What instrument does Link play?" , "Ocarina", possibleAnswers);
+        questions.add(q2);
+        boolean actual = server.addQuestions(1, questions);
+        assertTrue(actual);
     }
 
     @Test
