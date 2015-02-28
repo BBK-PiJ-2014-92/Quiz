@@ -64,7 +64,7 @@ public class QuizServer extends UnicastRemoteObject implements QuizService {
         return chosenQuiz;
     }
 
-    public boolean addQuestion(int id, List<Question> questions) throws RemoteException{
+    public boolean addQuestions(int id, List<Question> questions) throws RemoteException{
         Quiz chosenQuiz = getQuiz(id);
         if (chosenQuiz != null) {
             chosenQuiz.addQuestions(questions);

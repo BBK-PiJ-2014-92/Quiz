@@ -24,7 +24,7 @@ public interface QuizService extends Remote{
      * @param id The ID of the quiz that the questions will be placed in
      * @param questions A set of questions that will be added in the specified ID
      */
-    public boolean addQuestion(int id, List<Question> questions) throws RemoteException;
+    public boolean addQuestions(int id, List<Question> questions) throws RemoteException;
     /**
      *
      * Closes the quiz with the given ID and returns the winner of the specified quiz
