@@ -19,7 +19,7 @@ public class QuestionTest {
         possibleAnswers.add("But I wanted a peanut");
         possibleAnswers.add("I don't know");
         possibleAnswers.add("Invest it in a timeshare");
-        question1 = new QuestionImpl("What can you do with $20?", "Buy several peanuts", possibleAnswers);
+        question1 = new QuestionImpl("What can you do with $20?", "Can be exchanged for goods and services", possibleAnswers);
     }
 
     @Test
@@ -30,5 +30,13 @@ public class QuestionTest {
         String actual = question1.getPossibleAnswers().get(3);
         String expected = "Stop asking me questions!";
         assertEquals(actual, expected);
+    }
+
+    @Test
+    public void testCreateChoices() {
+        List<String> possibleAnswers = question1.createChoices();
+        int actual = possibleAnswers.size();
+        int expected = 4;
+        assertEquals(expected, actual);
     }
 }
