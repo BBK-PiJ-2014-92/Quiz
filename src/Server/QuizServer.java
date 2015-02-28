@@ -41,7 +41,9 @@ public class QuizServer extends UnicastRemoteObject implements QuizService {
     }
 
     public int newQuiz(String quizName) throws RemoteException {
-        Quiz newQuiz = new QuizImpl(quizName);
+        Quiz quiz = new QuizImpl(quizName);
+        quizzes.add(quiz);
+        return quiz.getID();
 
     }
 
