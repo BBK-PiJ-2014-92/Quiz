@@ -2,10 +2,12 @@ package Tests;
 
 import Server.QuizServer;
 import Server.QuizService;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import java.io.File;
 import java.rmi.RemoteException;
 
 import static org.junit.Assert.assertEquals;
@@ -39,14 +41,24 @@ public class QuizServerTest {
 //        quiz1.addQuestions(questions);
 //        quizzes.add(quiz1);
 
+    }
 
+    @After
+    public void cleanUp() {
+        File testFile = new File("Quiz.txt");
+        if (testFile.exists()) {
+            testFile.delete();
+        }
     }
 
     @Test
     public void testNewQuiz() throws RemoteException {
         int actual = server.newQuiz("Majora's Mask Quiz");
         int expected = 1;
-        assertEquals(actual, expected);
+        assertEquals(expected, actual);
+
+        actual = server.currentQuizzes().size();
+        assertEquals(expected, actual);
     }
 
     @Test
