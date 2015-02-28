@@ -54,7 +54,7 @@ public class QuizServer extends UnicastRemoteObject implements QuizService {
                 chosenQuiz = quizzes.get(i);
             }
         }
-        return chosenQuiz
+        return chosenQuiz;
     }
 
     public boolean addQuestion(int id, List<Question> questions) throws RemoteException{
@@ -63,12 +63,12 @@ public class QuizServer extends UnicastRemoteObject implements QuizService {
             chosenQuiz.addQuestions(questions);
             return true;
         }else{
-            return false;
+            throw new IllegalArgumentException("The Quiz with ID " + id + " does not exist");
         }
     }
 
     public Score closeQuiz(int quizID) throws RemoteException {
-        return null;
+
     }
 
     public void playQuiz(Score score, int quizID) throws RemoteException {
