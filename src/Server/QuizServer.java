@@ -98,7 +98,7 @@ public class QuizServer extends UnicastRemoteObject implements QuizService {
     }
 
     public boolean isCorrectAnswer(Question currentQuestion, String selectedAnswer) throws RemoteException {
-        return currentQuestion.getCorrectAnswer().equals(selectedAnswer) ? true : false;
+        return currentQuestion.getCorrectAnswer().equals(selectedAnswer);
     }
 
 }
