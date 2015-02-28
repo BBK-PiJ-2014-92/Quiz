@@ -110,8 +110,10 @@ public class QuizServerTest {
     }
 
     @Test
-    public void testCloseQuiz()  {
-
+    public void testCloseQuiz() throws RemoteException {
+        server.closeQuiz(1);
+        boolean actual = server.getQuiz(1).getClosed();
+        assertTrue(actual);
     }
 
     @Test
