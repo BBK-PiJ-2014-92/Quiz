@@ -24,7 +24,7 @@ public class QuizImpl implements Quiz, Serializable {
         this.quizID = IDCOUNT;
         questions = new ArrayList<Question>();
         highScores = new TreeSet<Score>();
-        closed = true;
+        closed = false;
     }
 
     public TreeSet<Score> getHighScores() {
