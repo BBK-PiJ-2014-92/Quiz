@@ -18,6 +18,7 @@ import java.util.TreeSet;
 public class QuizServer extends UnicastRemoteObject implements QuizService {
     private List<Quiz> quizzes;
 
+    @SuppressWarnings("unchecked")
     public QuizServer() throws RemoteException {
         super();
         this.quizzes = new ArrayList<Quiz>();
@@ -31,7 +32,6 @@ public class QuizServer extends UnicastRemoteObject implements QuizService {
                     this.quizzes = (ArrayList<Quiz>) o;
                     System.out.println("Quizzes successfully added");
                 }
-
                 input.close();
                 fis.close();
             } catch (FileNotFoundException e) {
@@ -54,9 +54,9 @@ public class QuizServer extends UnicastRemoteObject implements QuizService {
 
     private Quiz getQuiz(int id) throws RemoteException{
         Quiz chosenQuiz = null;
-        for (int i = 0; i < quizzes.size(); i++) {
-            if (quizzes.get(i).getID() == id) {
-                chosenQuiz = quizzes.get(i);
+        for (Quiz quiz : quizzes){
+            if (quiz.getID() == id) {
+                chosenQuiz = quiz;
             }
         }
         return chosenQuiz;
