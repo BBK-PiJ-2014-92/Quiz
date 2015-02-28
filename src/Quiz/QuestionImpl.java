@@ -3,9 +3,8 @@ package Quiz;
 import Interfaces.Question;
 
 import java.io.Serializable;
-import java.util.HashSet;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Created by Ahmed on 2/26/2015.
@@ -13,7 +12,7 @@ import java.util.Set;
 public class QuestionImpl implements Question, Serializable {
     private String question;
     private String correctAnswer;
-    private Set<String> possibleAnswers = new HashSet<String>();
+    private List<String> possibleAnswers = new ArrayList<String>();
 
     public QuestionImpl(String question, String correctAnswer, List<String> possibleAnswers) {
         this.question = question;
@@ -61,7 +60,7 @@ public class QuestionImpl implements Question, Serializable {
      *
      * @return a list of possible answers for the question
      */
-    public Set<String> getPossibleAnswers() {
+    public List<String> getPossibleAnswers() {
         return possibleAnswers;
     }
 
@@ -70,7 +69,7 @@ public class QuestionImpl implements Question, Serializable {
      *
      * @param newPossibleAnswers the new list of possible answers to replace the existing list
      */
-    public void setPossibleAnswers(Set<String> newPossibleAnswers) {
+    public void setPossibleAnswers(List<String> newPossibleAnswers) {
         possibleAnswers = newPossibleAnswers;
     }
 

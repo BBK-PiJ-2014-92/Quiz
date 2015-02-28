@@ -1,7 +1,6 @@
 package Interfaces;
 
 import java.util.List;
-import java.util.Set;
 
 /**
  * Created by Ahmed on 2/26/2015.
@@ -34,12 +33,12 @@ public interface Question {
      *
      * @return a list of possible answers for the question
      */
-    public Set<String> getPossibleAnswers();
+    public List<String> getPossibleAnswers();
     /**
      * Replaces the list of possible answer with another list of possible answers (not including the actual answer)
      * @param newPossibleAnswers the new list of possible answers to replace the existing list
      */
-    public void setPossibleAnswers(Set<String> newPossibleAnswers);
+    public void setPossibleAnswers(List<String> newPossibleAnswers);
     /**
      * Adds a list of possible answers to the end of the existing list of possible answers
      * @param newPossibleAnswers the new list of possible answers to be added to the end of the existing list
