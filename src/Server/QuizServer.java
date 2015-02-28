@@ -46,14 +46,14 @@ public class QuizServer extends UnicastRemoteObject implements QuizService {
 
     }
 
-    public int newQuiz(String quizName) throws RemoteException {
+    public int newQuiz(String quizName) {
         Quiz quiz = new QuizImpl(quizName);
         quizzes.add(quiz);
         return quiz.getID();
 
     }
 
-    private Quiz getQuiz(int id) throws RemoteException{
+    private Quiz getQuiz(int id) {
         Quiz chosenQuiz = null;
         for (Quiz quiz : quizzes){
             if (quiz.getID() == id) {
@@ -121,12 +121,33 @@ public class QuizServer extends UnicastRemoteObject implements QuizService {
         return score;
     }
 
-    public List<Quiz> currentQuizzes() throws RemoteException {
+    public List<Quiz> currentQuizzes() {
         return quizzes;
     }
 
-    public boolean isCorrectAnswer(Question currentQuestion, String selectedAnswer) throws RemoteException {
+    public boolean isCorrectAnswer(Question currentQuestion, String selectedAnswer)  {
         return currentQuestion.getCorrectAnswer().equals(selectedAnswer);
+    }
+
+    public void flush()  {
+        File newFile = new File("Quiz.txt");
+        if(newFile.exists()){
+            newFile.delete();
+        }else {
+            try {
+                FileOutputStream fos = new FileOutputStream(newFile);
+                ObjectOutputStream output = new ObjectOutputStream(fos);
+                output.writeObject(quizzes);
+                System.out.println("Quizzes successfully written");
+                output.close();
+                fos.close();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
     }
 
 }

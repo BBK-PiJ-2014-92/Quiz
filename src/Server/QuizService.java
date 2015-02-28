@@ -7,7 +7,6 @@ import Interfaces.Score;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Created by Ahmed on 2/25/2015.
@@ -17,7 +16,6 @@ public interface QuizService extends Remote{
      *
      * Creates a new quiz on the server and returns the quiz ID
      * @param quizName The name of the quiz
-     * @param questions An arbitrary number of questions in which the quiz will contain
      * @return The ID of the newly created quiz
      */
     public int newQuiz(String quizName) throws RemoteException;
@@ -61,4 +59,8 @@ public interface QuizService extends Remote{
      * @param selectedAnswer The answer in which the player has selected
      */
     public boolean isCorrectAnswer(Question currentQuestion, String selectedAnswer) throws RemoteException;
+    /**
+     * Saves the changes to the server on a text file
+     */
+    public void flush() throws RemoteException;
 }
