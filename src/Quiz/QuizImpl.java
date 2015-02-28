@@ -16,6 +16,7 @@ public class QuizImpl implements Quiz, Serializable {
     private static int IDCOUNT = 0;
     private List<Question> questions;
     private Set<Score> highScores;
+    private boolean closed;
 
     public QuizImpl(String name) {
         this.name = name;
@@ -23,10 +24,19 @@ public class QuizImpl implements Quiz, Serializable {
         this.quizID = IDCOUNT;
         questions = new ArrayList<Question>();
         highScores = new TreeSet<Score>();
+        closed = true;
     }
 
     public Set<Score> getHighScores() {
         return highScores;
+    }
+
+    public boolean getClosed() {
+        return closed;
+    }
+
+    public void setClosed(boolean closed){
+        this.closed = closed;
     }
 
     public String getName() {

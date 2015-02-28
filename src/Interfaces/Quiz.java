@@ -65,8 +65,9 @@ public interface Quiz {
      */
     public boolean getClosed();
     /**
-     * Sets the closed boolean to true i.e. closes the quiz
+     * Sets the closed boolean to the specified boolean i.e. closes/opens the quiz
      */
-    public void closeQuiz();
+    public void setClosed(boolean close);
+
 
 }
