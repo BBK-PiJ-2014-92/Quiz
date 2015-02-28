@@ -1,12 +1,13 @@
 package Server;
 
-import Interfaces.Score;
 import Interfaces.Question;
 import Interfaces.Quiz;
+import Interfaces.Score;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by Ahmed on 2/25/2015.
@@ -20,6 +21,12 @@ public interface QuizService extends Remote{
      * @return The ID of the newly created quiz
      */
     public int newQuiz(String quizName) throws RemoteException;
+    /**
+     * Adds questions to a specified quiz ID
+     * @param id The ID of the quiz that the questions will be placed in
+     * @param questions A set of questions that will be added in the specified ID
+     */
+    public boolean addQuestion(int id, List<Question> questions) throws RemoteException;
     /**
      *
      * Closes the quiz with the given ID and returns the winner of the specified quiz
