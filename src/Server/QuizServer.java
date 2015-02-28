@@ -4,6 +4,7 @@ import Interfaces.Question;
 import Interfaces.Quiz;
 import Interfaces.Score;
 import Quiz.QuizImpl;
+import Quiz.ScoreImpl;
 
 import java.io.*;
 import java.rmi.RemoteException;
@@ -93,16 +94,31 @@ public class QuizServer extends UnicastRemoteObject implements QuizService {
 
     }
 
-    public void playQuiz(String player, int quizID, List<String> playerChoices) throws RemoteException {
+    public int playQuiz(String player, int quizID, List<String> playerChoices) throws RemoteException {
         Quiz chosenQuiz = getQuiz(quizID);
+        int score = 0;
         if (chosenQuiz != null) {
             if (!chosenQuiz.getClosed()) {
-                int score = 0;
-                for (Question question : chosenQuiz.getQuestions()) {
-                    if ()
+                for (int i = 0; i < playerChoices.size() - 1; i++) {
+                    if (isCorrectAnswer(chosenQuiz.getQuestions().get(i), playerChoices.get(i))) {
+                        score++;
+                    }
                 }
+                for (Score score1 : chosenQuiz.getHighScores()) {
+                    if (score1.getName().equals(player) && score1.getScore() < score) {
+                        score1.setScore(score);
+                    }
+                }
+                if (!chosenQuiz.getPlayers().contains(player)) {
+                    chosenQuiz.getHighScores().add(new ScoreImpl(player, score));
+                }
+            }else {
+                throw new IllegalStateException("Quiz is not available to play");
             }
+        }else {
+            throw new IllegalArgumentException("This Quiz with ID " + quizID + " does not exist");
         }
+        return score;
     }
 
     public List<Quiz> currentQuizzes() throws RemoteException {
