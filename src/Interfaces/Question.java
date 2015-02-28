@@ -45,9 +45,9 @@ public interface Question {
      */
     public void addPossibleAnswers(List<String> newPossibleAnswers);
     /**
-     * Returns a list of answers to choose from of any size, as long as there are enough answers available
-     * @param size The number of choices the player could make
-     * @return A list of answers the player can choose from in random order with a specified size
+     * Returns a list of answers to choose from of size 4
+     *
+     * @return A list of answers the player can choose from in random order of size 4
      */
-    public List<String> createChoices(int size);
+    public List<String> createChoices();
 }

@@ -89,15 +89,17 @@ public class QuestionImpl implements Question, Serializable {
 
     }
 
-    public List<String> createChoices(int size) {
+    public List<String> createChoices() {
         List<String> result = new ArrayList<String>();
         Collections.shuffle(possibleAnswers);
         if (possibleAnswers.isEmpty()) {
             throw new IllegalStateException("There are no possible answers to choose from");
         }else if (correctAnswer == null) {
             throw new IllegalStateException("Please set the correct answer");
+        }else if (possibleAnswers.size() <= 1) {
+            throw new IllegalStateException("There are not enough possible answers to choose from");
         }
-        for (int i = 0; i < size - 2; i++) { //Size is subtracted by 2 to prevent NullPointerExceptions from occurring and to allow the actual answer to be added in
+        for (int i = 0; i < 2; i++) {
             result.add(possibleAnswers.get(i));
         }
         result.add(correctAnswer);
