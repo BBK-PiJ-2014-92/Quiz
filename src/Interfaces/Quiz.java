@@ -58,5 +58,15 @@ public interface Quiz {
      * @return A set of the current HighScore for this quiz
      */
     public Set<Score> getHighScores();
+    /**
+     * Returns whether the quiz is closed
+     *
+     * @return whether the quiz is closed
+     */
+    public boolean getClosed();
+    /**
+     * Sets the closed boolean to true i.e. closes the quiz
+     */
+    public void closeQuiz();
 
 }
