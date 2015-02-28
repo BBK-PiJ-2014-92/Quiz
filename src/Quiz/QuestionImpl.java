@@ -99,7 +99,7 @@ public class QuestionImpl implements Question, Serializable {
         }else if (possibleAnswers.size() <= 1) {
             throw new IllegalStateException("There are not enough possible answers to choose from");
         }
-        for (int i = 0; i < 2; i++) {
+        for (int i = 0; i < 3; i++) {
             result.add(possibleAnswers.get(i));
         }
         result.add(correctAnswer);
