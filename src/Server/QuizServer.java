@@ -47,7 +47,7 @@ public class QuizServer extends UnicastRemoteObject implements QuizService {
 
     }
 
-    private Quiz getQuiz(int id) {
+    private Quiz getQuiz(int id) throws RemoteException{
         Quiz chosenQuiz = null;
         for (int i = 0; i < quizzes.size(); i++) {
             if (quizzes.get(i).getID() == id) {
@@ -67,8 +67,12 @@ public class QuizServer extends UnicastRemoteObject implements QuizService {
         }
     }
 
-    public Score closeQuiz(int quizID) throws RemoteException {
+    public Score closeQuiz(int quizID, Score score) throws RemoteException {
+        Quiz chosenQuiz = getQuiz(quizID);
+        if (chosenQuiz != null) {
+            chosenQuiz.setClosed(true);
 
+        }
     }
 
     public void playQuiz(Score score, int quizID) throws RemoteException {
@@ -76,7 +80,7 @@ public class QuizServer extends UnicastRemoteObject implements QuizService {
     }
 
     public List<Quiz> currentQuizzes() throws RemoteException {
-        return null;
+        return quizzes;
     }
 
     public boolean isCorrectAnswer(Question currentQuestion, String selectedAnswer) throws RemoteException {
