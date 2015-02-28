@@ -125,8 +125,13 @@ public class QuizServerTest {
     }
 
     @Test
-    public void testPlayQuiz()  {
-
+    public void testPlayQuiz() throws RemoteException {
+        possibleAnswers.clear();
+        possibleAnswers.add("You've met with a terrible fate, haven't you?");
+        possibleAnswers.add("Majora's Mask");
+        int actual = server.playQuiz("Skull Kid", 1, possibleAnswers);
+        int expected = 2;
+        assertEquals(expected, actual);
     }
 
 
