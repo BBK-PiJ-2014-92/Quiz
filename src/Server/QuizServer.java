@@ -3,6 +3,7 @@ package Server;
 import Interfaces.Question;
 import Interfaces.Quiz;
 import Interfaces.Score;
+import Quiz.QuizImpl;
 
 import java.io.*;
 import java.rmi.RemoteException;
@@ -39,8 +40,9 @@ public class QuizServer extends UnicastRemoteObject implements QuizService {
 
     }
 
-    public int newQuiz(String quizName, Question... questions) throws RemoteException {
-        return 0;
+    public int newQuiz(String quizName) throws RemoteException {
+        Quiz newQuiz = new QuizImpl(quizName);
+
     }
 
     public Score closeQuiz(int quizID) throws RemoteException {

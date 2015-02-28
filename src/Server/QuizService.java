@@ -19,7 +19,7 @@ public interface QuizService extends Remote{
      * @param questions An arbitrary number of questions in which the quiz will contain
      * @return The ID of the newly created quiz
      */
-    public int newQuiz(String quizName, Question... questions) throws RemoteException;
+    public int newQuiz(String quizName) throws RemoteException;
     /**
      *
      * Closes the quiz with the given ID and returns the winner of the specified quiz
