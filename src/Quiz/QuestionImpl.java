@@ -3,8 +3,9 @@ package Quiz;
 import Interfaces.Question;
 
 import java.io.Serializable;
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by Ahmed on 2/26/2015.
@@ -12,7 +13,7 @@ import java.util.List;
 public class QuestionImpl implements Question, Serializable {
     private String question;
     private String correctAnswer;
-    private List<String> possibleAnswers = new ArrayList<String>();
+    private Set<String> possibleAnswers = new HashSet<String>();
 
     public QuestionImpl(String question, String correctAnswer, List<String> possibleAnswers) {
         this.question = question;
@@ -60,7 +61,7 @@ public class QuestionImpl implements Question, Serializable {
      *
      * @return a list of possible answers for the question
      */
-    public List<String> getPossibleAnswers() {
+    public Set<String> getPossibleAnswers() {
         return possibleAnswers;
     }
 
@@ -69,7 +70,7 @@ public class QuestionImpl implements Question, Serializable {
      *
      * @param newPossibleAnswers the new list of possible answers to replace the existing list
      */
-    public void setPossibleAnswers(List<String> newPossibleAnswers) {
+    public void setPossibleAnswers(Set<String> newPossibleAnswers) {
         possibleAnswers = newPossibleAnswers;
     }
 
@@ -79,7 +80,7 @@ public class QuestionImpl implements Question, Serializable {
      * @param newPossibleAnswers the new list of possible answers to be added to the end of the existing list
      */
     public void addPossibleAnswers(List<String> newPossibleAnswers) {
-        for(String answer: possibleAnswers) {
+        for(String answer: newPossibleAnswers) {
             if (answer.equals(correctAnswer)) {
                 newPossibleAnswers.remove(answer);
             }
