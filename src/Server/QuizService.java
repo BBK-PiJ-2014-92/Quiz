@@ -42,11 +42,12 @@ public interface QuizService extends Remote{
     public void openQuiz(int quizID) throws RemoteException;
     /**
      *
-     * Allows the specified player to play a quiz matching the given quiz ID
+     * Allows the specified player to play a quiz matching the given quiz ID with a given list of choices
      * @param player The name of the player about to play the specified quiz
      * @param quizID The ID of the quiz about to be played
+     * @param playerChoices A list of answers that the player has picked
      */
-    public void playQuiz(String player, int quizID) throws RemoteException;
+    public void playQuiz(String player, int quizID, List<String> playerChoices) throws RemoteException;
     /**
      *
      * Returns a list of the current available quizzes

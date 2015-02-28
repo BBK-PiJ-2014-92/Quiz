@@ -93,11 +93,14 @@ public class QuizServer extends UnicastRemoteObject implements QuizService {
 
     }
 
-    public void playQuiz(String player, int quizID) throws RemoteException {
+    public void playQuiz(String player, int quizID, List<String> playerChoices) throws RemoteException {
         Quiz chosenQuiz = getQuiz(quizID);
         if (chosenQuiz != null) {
             if (!chosenQuiz.getClosed()) {
-                
+                int score = 0;
+                for (Question question : chosenQuiz.getQuestions()) {
+                    if ()
+                }
             }
         }
     }
