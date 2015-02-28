@@ -19,6 +19,14 @@ public interface QuizService extends Remote{
      * @return The ID of the newly created quiz
      */
     public int newQuiz(String quizName) throws RemoteException;
+
+    /**
+     * Returns the quiz with the specified ID
+     * @param id The ID of the quiz
+     * @return The quiz with the specified ID
+     * @throws RemoteException
+     */
+    public Quiz getQuiz(int id) throws RemoteException;
     /**
      * Adds questions to a specified quiz ID
      * @param id The ID of the quiz that the questions will be placed in

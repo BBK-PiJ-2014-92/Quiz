@@ -54,7 +54,7 @@ public class QuizServer extends UnicastRemoteObject implements QuizService {
 
     }
 
-    private Quiz getQuiz(int id) {
+    public Quiz getQuiz(int id) {
         Quiz chosenQuiz = null;
         for (Quiz quiz : quizzes){
             if (quiz.getID() == id) {
