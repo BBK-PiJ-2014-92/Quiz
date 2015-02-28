@@ -63,7 +63,4 @@ public class QuizServer extends UnicastRemoteObject implements QuizService {
         return false;
     }
 
-    public int totalScore(Score score, Quiz quiz) throws RemoteException {
-        return 0;
-    }
 }
