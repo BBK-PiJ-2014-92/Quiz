@@ -10,6 +10,7 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.TreeSet;
 
 /**
  * Created by Ahmed on 2/28/2015.
@@ -71,7 +72,10 @@ public class QuizServer extends UnicastRemoteObject implements QuizService {
         Quiz chosenQuiz = getQuiz(quizID);
         if (chosenQuiz != null) {
             chosenQuiz.setClosed(true);
-
+            TreeSet<Score> highScores = chosenQuiz.getHighScores();
+            return highScores.isEmpty() ? null : highScores.first();
+        }else {
+            throw new IllegalArgumentException("The Quiz with ID " + quizID + " does not exist");
         }
     }
 
