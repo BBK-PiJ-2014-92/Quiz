@@ -31,8 +31,8 @@ public class QuizServerTest {
     @BeforeClass
     public static void setUp() throws RemoteException {
         server = new QuizServer();
-        quiz1 = new QuizImpl("Majora's Mask Quiz");
-        quiz2 = new QuizImpl("Monty Python Quiz");
+        quiz1 = new QuizImpl("Majora's Mask Quiz", server.getQuizIDs().generateID());
+        quiz2 = new QuizImpl("Monty Python Quiz", server.getQuizIDs().generateID());
     }
     @Before
     public void buildUp() throws RemoteException {
