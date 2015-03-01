@@ -18,7 +18,9 @@ public class SetupClientTest {
     @BeforeClass
     public static void buildUp() throws RemoteException {
         serverLauncher = new QuizServerLauncher();
+        serverLauncher.launch();
         maker = new SetupClient();
+
     }
 
     @After
