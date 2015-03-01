@@ -1,5 +1,6 @@
 package Client;
 
+import Interfaces.Question;
 import Interfaces.Quiz;
 import Interfaces.Score;
 import Server.QuizService;
@@ -31,7 +32,7 @@ public class PlayerClient {
         }
     }
 
-    public void launch() {
+    public void launch() throws RemoteException {
         serverConnection();
         System.out.println("Welcome to the quiz server!");
         boolean finished = false;
@@ -93,9 +94,9 @@ public class PlayerClient {
             }
         }
         if (openedQuizzes.isEmpty()) {
-            System.out.println("There are no available quizzes available");
+            System.out.println("There are no available quizzes");
         }else {
-            System.out.println("Here is a current list of opened quizzes: ");
+            System.out.println("Here is a list of opened quizzes: ");
             for (Quiz quiz : openedQuizzes) {
                 System.out.println(quiz);
                 idsOfQuizzes.add(quiz.getID());
@@ -103,17 +104,38 @@ public class PlayerClient {
             System.out.println("Select which quiz to play by typing in the ID number (type in any non number to quit)");
             Scanner sc = new Scanner(System.in);
             int id = getIDFromGivenList(idsOfQuizzes,sc);
-            if (id != 0) {
-                topScore = server.closeQuiz(id);
-                if (topScore == null) {
-                    System.out.println("No one has attempted this quiz");
+            System.out.println("Please enter your name: ");
+            String player = sc.nextLine();
+            Quiz selectedQuiz = server.getQuiz(id);
+            List<String> answers = new ArrayList<String>();
+            for (Question question : selectedQuiz.getQuestions()) {
+                System.out.println(question.getQuestionName());
+                List<String> possibleAnswers = question.createChoices();
+                for (int i = 0; i < possibleAnswers.size(); i++) {
+                    System.out.println(i + ". " + possibleAnswers.get(i));
+                }
+                boolean isInt = sc.hasNextInt();
+                while (!isInt) {
+                    System.out.println("Please enter a number");
+                    sc.nextLine();
+                    isInt = sc.hasNextInt();
+                }
+                int choice = Integer.parseInt(sc.nextLine());
+                while (choice > 4) {
+                    System.out.println("Please select an appropriate answer");
+                    choice = Integer.parseInt(sc.nextLine());
+                }
+                answers.add(possibleAnswers.get(choice));
+                if (server.isCorrectAnswer(question, possibleAnswers.get(choice))) {
+                    System.out.println("Correct");
                 }else {
-                    System.out.println("The top score for this quiz is " + topScore.getScore() + " by " + topScore.getName());
+                    System.out.println("The correct answer is " + question.getCorrectAnswer());
                 }
             }
-        }
+            server.playQuiz(player, )
 
-        return topScore;
+        }
+        return null;
     }
 
     public void highScores() {
