@@ -38,6 +38,7 @@ public class SetupClient {
         String name = sc.nextLine();
         name = whileBlank(name);
         int id = server.newQuiz(name);
+        addQuestions(id);
         System.out.println("Quiz " + name + " has ID " + id);
         return id;
     }
