@@ -141,7 +141,6 @@ public class SetupClient {
                 questions.add(q);
                 try {
                     server.addQuestions(id, questions);
-                    System.out.println(server.getQuiz(id));
                     finished = true;
                 } catch (RemoteException e) {
                     e.printStackTrace();
