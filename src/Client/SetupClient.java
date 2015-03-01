@@ -78,6 +78,10 @@ public class SetupClient {
         }
     }
 
+    public QuizService getServer() {
+        return server;
+    }
+
     public int newQuiz() throws RemoteException {
         Scanner sc = new Scanner(System.in);
         System.out.println("Name of Quiz: ");
