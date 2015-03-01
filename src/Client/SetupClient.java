@@ -220,15 +220,19 @@ public class SetupClient {
                 closedQuizzes.add(quiz);
             }
         }
-        System.out.println("Here is a current list of closed quizzes: ");
-        for (Quiz quiz : closedQuizzes) {
-            System.out.println(quiz);
-            idsOfQuizzes.add(quiz.getID());
+        if (closedQuizzes.isEmpty()) {
+            System.out.println("There are no closed quizzes to choose from");
+        }else {
+            System.out.println("Here is a current list of closed quizzes: ");
+            for (Quiz quiz : closedQuizzes) {
+                System.out.println(quiz);
+                idsOfQuizzes.add(quiz.getID());
+            }
+            System.out.println("Select which quiz to open by typing in the ID number (type in any non number to quit)");
+            Scanner sc = new Scanner(System.in);
+            int id = getIDFromGivenList(idsOfQuizzes, sc);
+            server.openQuiz(id);
+            System.out.println("Quiz " + id + " is now open");
         }
-        System.out.println("Select which quiz to open by typing in the ID number (type in any non number to quit)");
-        Scanner sc = new Scanner(System.in);
-        int id = getIDFromGivenList(idsOfQuizzes, sc);
-        server.openQuiz(id);
-        System.out.println("Quiz " + id + " is now open");
     }
 }
