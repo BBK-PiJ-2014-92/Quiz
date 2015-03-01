@@ -2,7 +2,6 @@ package Client;
 
 import Interfaces.Question;
 import Interfaces.Quiz;
-import Interfaces.Score;
 import Server.QuizService;
 
 import java.rmi.NotBoundException;
@@ -88,6 +87,7 @@ public class PlayerClient {
     public int playQuiz() throws RemoteException {
         List<Quiz> openedQuizzes = new ArrayList<Quiz>();
         List<Integer> idsOfQuizzes = new ArrayList<Integer>();
+        int score = 0;
         for (Quiz quiz : server.currentQuizzes()) {
             if (!quiz.getClosed()) {
                 openedQuizzes.add(quiz);
@@ -132,10 +132,10 @@ public class PlayerClient {
                     System.out.println("The correct answer is " + question.getCorrectAnswer());
                 }
             }
-            int score = server.playQuiz(player, id, answers);
-
+            score = server.playQuiz(player, id, answers);
         }
-        return null;
+        System.out.println("Final score: " + score);
+        return score;
     }
 
     public void highScores() {
