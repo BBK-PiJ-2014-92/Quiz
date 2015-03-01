@@ -101,6 +101,7 @@ public class SetupClient {
 
     public Score closeQuiz() throws RemoteException {
         List<Quiz> openedQuizzes = server.currentQuizzes();
+        List<Integer> idsOfQuizzes = new ArrayList<Integer>();
         for (Quiz quiz : openedQuizzes) {
             if (quiz.getClosed()) {
                 openedQuizzes.remove(quiz);
@@ -109,6 +110,7 @@ public class SetupClient {
         System.out.println("Here is a current list of opened quizzes: ");
         for (Quiz quiz : openedQuizzes) {
             System.out.println(quiz);
+            idsOfQuizzes.add(quiz.getID());
         }
         System.out.println("Select which quiz to close by typing in the ID number (type in any non number to quit)");
         Scanner sc = new Scanner(System.in);
@@ -116,6 +118,12 @@ public class SetupClient {
             System.out.println("Thanks for playing");
             return null;
         }else {
+            int id = sc.nextInt();
+            while (!idsOfQuizzes.contains(id)) {
+                System.out.println("Please enter a number from the list");
+                id = sc.nextInt();
+            }
+            Score topScore = server.closeQuiz(id);
 
         }
     }
