@@ -49,8 +49,7 @@ public class SetupClient {
             boolean isInt = sc.hasNextInt();
             while (!isInt) {
                 System.out.println("Please enter a number");
-                String input = sc.nextLine();
-                whileBlank(input);
+                sc.nextLine();
                 isInt = sc.hasNextInt();
             }
             int number = sc.nextInt();
@@ -91,9 +90,9 @@ public class SetupClient {
     }
 
     private String whileBlank(String parameter) {
-        Scanner sc = new Scanner(System.in);
         while (parameter.trim().isEmpty()) {
             System.out.println("Cannot be blank. Please try again");
+            Scanner sc = new Scanner(System.in);
             parameter = sc.nextLine();
         }
         return parameter;
