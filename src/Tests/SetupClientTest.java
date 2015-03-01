@@ -61,7 +61,7 @@ public class SetupClientTest {
         maker.addQuestions();
         List<String> possibleAnswers = new ArrayList<String>();
         Question actual = maker.getServer().getQuiz(1).getQuestions().get(1);
-        Question expected = new QuestionImpl("Who played Conan the Barbarian (1982) ", "Arnold Schwarzenegger",possibleAnswers); //Overrode equals and hashCode function such that it only checks that the question and the correct answer are equal
+        Question expected = new QuestionImpl("Who played Conan the Barbarian (1982)", "Arnold Schwarzenegger",possibleAnswers); //Overrode equals and hashCode function such that it only checks that the question and the correct answer are equal
         assertEquals(expected, actual);
     }
 
