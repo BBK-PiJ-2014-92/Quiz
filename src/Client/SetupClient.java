@@ -37,38 +37,45 @@ public class SetupClient {
     public void launch() throws RemoteException {
         serverConnection();
         System.out.println("Welcome to quiz creator!");
-        System.out.println("Please select one of the following: ");
-        System.out.println("1. Create a new quiz");
-        System.out.println("2. Close an existing quiz");
-        System.out.println("3. Open a closed quiz");
-        System.out.println("4. Add questions to an existing quiz");
-        System.out.println("5. Quit");
-        Scanner sc = new Scanner(System.in);
-        boolean isInt = sc.hasNextInt();
-        while (!isInt) {
-            System.out.println("Please enter a number");
-            sc.nextLine();
-            isInt = sc.hasNextInt();
-        }
-        int number = sc.nextInt();
-        switch (number) {
-            case 1:
-                newQuiz();
-                break;
-            case 2:
-                closeQuiz();
-                break;
-            case 3:
-                openQuiz();
-                break;
-            case 4:
-                addQuestions();
-                break;
-            case 5:
-                System.out.println("Thanks for playing");
-                break;
-            default:
-                System.out.println("Please enter one of the available options");
+        boolean finished = false;
+        while (!finished) {
+            System.out.println("Please select one of the following: ");
+            System.out.println("1. Create a new quiz");
+            System.out.println("2. Close an existing quiz");
+            System.out.println("3. Open a closed quiz");
+            System.out.println("4. Add questions to an existing quiz");
+            System.out.println("5. Quit");
+            Scanner sc = new Scanner(System.in);
+            boolean isInt = sc.hasNextInt();
+            while (!isInt) {
+                System.out.println("Please enter a number");
+                String input = sc.nextLine();
+                whileBlank(input);
+                isInt = sc.hasNextInt();
+            }
+            int number = sc.nextInt();
+            switch (number) {
+                case 1:
+                    newQuiz();
+                    break;
+                case 2:
+                    closeQuiz();
+                    break;
+                case 3:
+                    openQuiz();
+                    break;
+                case 4:
+                    addQuestions();
+                    break;
+                case 5:
+                    System.out.println("Thanks for playing");
+                    finished = true;
+                    break;
+                default:
+                    System.out.println("Please enter one of the available options");
+                    break;
+            }
+
         }
     }
 
