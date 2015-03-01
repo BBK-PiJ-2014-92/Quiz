@@ -114,6 +114,7 @@ public class SetupClient {
             System.out.println("Please enter the number of wrong answers you want to include (must be at least 3): ");
             while (!sc.hasNextInt()) {
                 System.out.println("Please enter a number: ");
+                sc.nextLine();
             }
             int size = sc.nextInt();
             while (size < 3) {
