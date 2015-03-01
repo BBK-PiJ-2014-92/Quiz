@@ -99,6 +99,9 @@ public class SetupClient {
         }
     }
 
+    private int getIDFromGivenList (List<Integer> listOfIDs) {
+
+    }
 
     public void addQuestions() throws RemoteException {
         List<Quiz> quizzes = server.currentQuizzes();
