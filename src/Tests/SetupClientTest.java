@@ -4,7 +4,7 @@ import Client.SetupClient;
 import Interfaces.Question;
 import Quiz.QuestionImpl;
 import Server.QuizServerLauncher;
-import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -25,16 +25,20 @@ public class SetupClientTest {
         serverLauncher = new QuizServerLauncher();
         serverLauncher.launch();
         maker = new SetupClient();
+        String answers = "Conan the Barbarian\nWhat is best is life?\nCrush our enemies. See them driven before you and to hear the lamentation of the their women\n3\nA nice walk on the beach\nA nice walk on the beach\nIce cream\nI don't know\nN";
+        ByteArrayInputStream bais = new ByteArrayInputStream(answers.getBytes());
+        System.setIn(bais);
+        maker.serverConnection();
+        maker.newQuiz();
 
     }
 
-    @After
-    public void tearDown() throws RemoteException {
+    @AfterClass
+    public static void tearDown() {
         File testFile = new File("Quiz.txt");
         if(testFile.exists()) {
             testFile.delete();
         }
-        maker.getServer().setQuizzes(null);
     }
 
     @Test
@@ -44,7 +48,7 @@ public class SetupClientTest {
         System.setIn(bais);
         maker.serverConnection();
         int actual = maker.newQuiz();
-        int expected = 1;
+        int expected = 2;
         assertEquals(expected, actual);
     }
 
@@ -57,14 +61,10 @@ public class SetupClientTest {
         maker.addQuestions();
         List<String> possibleAnswers = new ArrayList<String>();
         Question actual = maker.getServer().getQuiz(1).getQuestions().get(1);
-        Question expected = new QuestionImpl("Who played Conan the Barbarian (1982", "Arnold Schwarzenegger",possibleAnswers); //Overrode equals and hashCode function such that it only checks that the question and the correct answer are equal
+        Question expected = new QuestionImpl("Who played Conan the Barbarian (1982) ", "Arnold Schwarzenegger",possibleAnswers); //Overrode equals and hashCode function such that it only checks that the question and the correct answer are equal
         assertEquals(expected, actual);
     }
 
-    @Test
-    public void testAddQuestions1() {
-
-    }
 
     @Test
     public void testCloseQuiz() {
