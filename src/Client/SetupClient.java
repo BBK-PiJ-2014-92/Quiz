@@ -32,12 +32,31 @@ public class SetupClient {
         Scanner sc = new Scanner(System.in);
         System.out.println("Name of Quiz: ");
         String name = sc.nextLine();
-        while (name.trim().isEmpty() || name == null) {
-            System.out.println("Quiz name cannot be blank nor null. Pleas try again");
+        while (name.trim().isEmpty()) {
+            System.out.println("Quiz name cannot be blank. Please try again");
             name = sc.nextLine();
         }
-        return server.newQuiz(name);
+        int id = server.newQuiz(name);
+        System.out.println("Quiz " + name + " has ID " + id);
+        return id;
     }
 
-    public void addQuestions
+    public void addQuestions(int id) {
+        boolean finished = false;
+        Scanner sc = new Scanner(System.in);
+        while (!finished) {
+            System.out.println("Please enter a question: ");
+            String question = sc.nextLine();
+            while (question.trim().isEmpty()) {
+                System.out.println("Question cannot be blank. Please try again");
+                question = sc.nextLine();
+            }
+            System.out.println("Please enter the correct answer to this question: ");
+            String correctAnswer = sc.nextLine();
+            while (correctAnswer.trim().isEmpty()) {
+                System.out.println("Answer cannot be blank. Please try again");
+                correctAnswer = sc.nextLine();
+            finished = true;
+        }
+    }
 }
