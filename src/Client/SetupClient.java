@@ -124,7 +124,8 @@ public class SetupClient {
                 id = sc.nextInt();
             }
             Score topScore = server.closeQuiz(id);
-
+            System.out.println("The top score for this quiz is " + topScore.getScore() + " by " + topScore.getName());
+            return topScore;
         }
     }
 }
