@@ -2,6 +2,8 @@ package Tests;
 
 import Client.PlayerClient;
 import Client.SetupClient;
+import Interfaces.Score;
+import Quiz.ScoreImpl;
 import Server.QuizServerLauncher;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -42,7 +44,7 @@ public class PlayerClientTest {
 
     @Test
     public void testPlayQuizAndHighScore() throws RemoteException {
-        String answer = "1\nAhmed\n1";
+        String answer = "1\nAhmed\n1\n3";
         ByteArrayInputStream bais = new ByteArrayInputStream(answer.getBytes());
         System.setIn(bais);
         player.serverConnection();
@@ -50,6 +52,15 @@ public class PlayerClientTest {
         String actual = player.getServer().getQuiz(1).getPlayers().get(0);
         String expected = "AHMED";
         assertEquals(expected, actual);
+
+        answer = "2\n1";
+        bais = new ByteArrayInputStream(answer.getBytes());
+        System.setIn(bais);
+        player.serverConnection();
+        player.highScores();
+        Score expected2= new ScoreImpl("AHMED", 0); //score doesn't really matter as equals only depends on the name
+        Score actual2 = player.getServer().closeQuiz(1);
+        assertEquals(expected2, actual2);
     }
 
 }
