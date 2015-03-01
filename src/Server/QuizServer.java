@@ -64,7 +64,7 @@ public class QuizServer extends UnicastRemoteObject implements QuizService {
         return chosenQuiz;
     }
 
-    public boolean addQuestions(int id, List<Question> questions) throws RemoteException{
+    public synchronized boolean addQuestions(int id, List<Question> questions) throws RemoteException{
         Quiz chosenQuiz = getQuiz(id);
         if (chosenQuiz != null) {
             chosenQuiz.addQuestions(questions);
@@ -75,7 +75,7 @@ public class QuizServer extends UnicastRemoteObject implements QuizService {
         }
     }
 
-    public Score closeQuiz(int quizID) throws RemoteException {
+    public synchronized Score closeQuiz(int quizID) throws RemoteException {
         Quiz chosenQuiz = getQuiz(quizID);
         if (chosenQuiz != null) {
             chosenQuiz.setClosed(true);
@@ -87,7 +87,7 @@ public class QuizServer extends UnicastRemoteObject implements QuizService {
         }
     }
 
-    public void openQuiz(int quizID) throws RemoteException {
+    public synchronized void openQuiz(int quizID) throws RemoteException {
         Quiz chosenQuiz = getQuiz(quizID);
         if (chosenQuiz != null) {
             chosenQuiz.setClosed(false);
@@ -98,7 +98,7 @@ public class QuizServer extends UnicastRemoteObject implements QuizService {
 
     }
 
-    public int playQuiz(String player, int quizID, List<String> playerChoices) throws RemoteException {
+    public synchronized int playQuiz(String player, int quizID, List<String> playerChoices) throws RemoteException {
         Quiz chosenQuiz = getQuiz(quizID);
         int score = 0;
         if (chosenQuiz != null) {
@@ -130,7 +130,7 @@ public class QuizServer extends UnicastRemoteObject implements QuizService {
         return quizzes;
     }
 
-    public void setQuizzes(List<Quiz> quizzes) throws RemoteException {
+    public synchronized void setQuizzes(List<Quiz> quizzes) throws RemoteException {
         this.quizzes = quizzes;
     }
 
@@ -138,7 +138,7 @@ public class QuizServer extends UnicastRemoteObject implements QuizService {
         return currentQuestion.getCorrectAnswer().equals(selectedAnswer);
     }
 
-    public void flush()  {
+    public synchronized void flush()  {
         File newFile = new File("Quiz.txt");
         try {
             FileOutputStream fos = new FileOutputStream(newFile);
