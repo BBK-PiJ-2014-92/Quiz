@@ -179,7 +179,7 @@ public class SetupClient {
         }
     }
 
-    public synchronized Score closeQuiz() throws RemoteException {
+    public Score closeQuiz() throws RemoteException {
         List<Quiz> openedQuizzes = new ArrayList<Quiz>();
         List<Integer> idsOfQuizzes = new ArrayList<Integer>();
         Score topScore = null;
