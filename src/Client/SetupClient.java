@@ -6,6 +6,8 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -54,10 +56,22 @@ public class SetupClient {
             System.out.println("Please enter a question: ");
             String question = sc.nextLine();
             question = whileBlank(question);
+
             System.out.println("Please enter the correct answer to this question: ");
             String correctAnswer = sc.nextLine();
             correctAnswer = whileBlank(correctAnswer);
 
+            System.out.println("Please enter the number of wrong answers you want to include (must be at least 3): ");
+            int size = sc.nextInt();
+            while (size < 3) {
+                System.out.println("Please enter a number greater than or equal to 3: ");
+                size = sc.nextInt();
+            }
+            List<String> possibleAnswers = new ArrayList<String>();
+            for (int i = 0; i < size; i++) {
+                String answer = sc.nextLine();
+                answer = whileBlank(answer);
+            }
             finished = true;
         }
     }
