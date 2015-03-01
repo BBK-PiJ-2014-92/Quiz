@@ -47,24 +47,19 @@ public class PlayerClient {
             int number = Integer.parseInt(sc.nextLine());
             switch (number) {
                 case 1:
-                    newQuiz();
+                    playQuiz();
                     break;
                 case 2:
-                    closeQuiz();
+                    highScores();
                     break;
                 case 3:
-                    openQuiz();
-                    break;
-                case 4:
-                    addQuestions();
-                    break;
-                case 5:
                     System.out.println("Thanks for playing");
                     finished = true;
                     break;
                 default:
                     System.out.println("Please enter one of the available options");
                     break;
+            }
         }
     }
 
