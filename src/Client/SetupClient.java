@@ -32,13 +32,19 @@ public class SetupClient {
         Scanner sc = new Scanner(System.in);
         System.out.println("Name of Quiz: ");
         String name = sc.nextLine();
-        while (name.trim().isEmpty()) {
-            System.out.println("Quiz name cannot be blank. Please try again");
-            name = sc.nextLine();
-        }
+        name = whileBlank(name);
         int id = server.newQuiz(name);
         System.out.println("Quiz " + name + " has ID " + id);
         return id;
+    }
+
+    private String whileBlank(String parameter) {
+        Scanner sc = new Scanner(System.in);
+        while (parameter.trim().isEmpty()) {
+            System.out.println("Cannot be blank. Please try again");
+            parameter = sc.nextLine();
+        }
+        return parameter;
     }
 
     public void addQuestions(int id) {
@@ -47,15 +53,11 @@ public class SetupClient {
         while (!finished) {
             System.out.println("Please enter a question: ");
             String question = sc.nextLine();
-            while (question.trim().isEmpty()) {
-                System.out.println("Question cannot be blank. Please try again");
-                question = sc.nextLine();
-            }
+            question = whileBlank(question);
             System.out.println("Please enter the correct answer to this question: ");
             String correctAnswer = sc.nextLine();
-            while (correctAnswer.trim().isEmpty()) {
-                System.out.println("Answer cannot be blank. Please try again");
-                correctAnswer = sc.nextLine();
+            correctAnswer = whileBlank(correctAnswer);
+
             finished = true;
         }
     }
