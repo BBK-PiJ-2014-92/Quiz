@@ -156,10 +156,10 @@ public class SetupClient {
         if (!sc.hasNextInt()) {
             System.out.println("Thanks for playing");
         }else {
-            id = Integer.parseInt(sc.nextLine());
+            id = integerCheck(sc);
             while (!listOfIDs.contains(id)) {
                 System.out.println("Please enter a number from the list");
-                id = Integer.parseInt(sc.nextLine());
+                id = integerCheck(sc);
             }
         }
         return id;

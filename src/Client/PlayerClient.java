@@ -43,13 +43,7 @@ public class PlayerClient {
             System.out.println("2. Highscores");
             System.out.println("3. Quit");
             Scanner sc = new Scanner(System.in);
-            boolean isInt = sc.hasNextInt();
-            while (!isInt) {
-                System.out.println("Please enter a number");
-                sc.nextLine();
-                isInt = sc.hasNextInt();
-            }
-            int number = Integer.parseInt(sc.nextLine());
+            int number = integerCheck(sc);
             switch (number) {
                 case 1:
                     playQuiz();
@@ -72,15 +66,29 @@ public class PlayerClient {
         return server;
     }
 
+    private int integerCheck(Scanner sc) {
+        int number = 0;
+        boolean done = false;
+        while (!done) {
+            try {
+                number = Integer.parseInt(sc.nextLine());
+                done = true;
+            }catch (NumberFormatException e) {
+                System.out.println("Please enter a number: ");
+            }
+        }
+        return number;
+    }
+
     private int getIDFromGivenList (List<Integer> listOfIDs, Scanner sc) {
         int id = 0;
         if (!sc.hasNextInt()) {
             System.out.println("Thanks for playing");
         }else {
-            id = Integer.parseInt(sc.nextLine());
+            id = integerCheck(sc);
             while (!listOfIDs.contains(id)) {
                 System.out.println("Please enter a number from the list");
-                id = Integer.parseInt(sc.nextLine());
+                id = integerCheck(sc);
             }
         }
         return id;
@@ -116,13 +124,7 @@ public class PlayerClient {
                 for (int i = 0; i < possibleAnswers.size(); i++) {
                     System.out.println(i+1 + ". " + possibleAnswers.get(i));
                 }
-                boolean isInt = sc.hasNextInt();
-                while (!isInt) {
-                    System.out.println("Please enter a number");
-                    sc.nextLine();
-                    isInt = sc.hasNextInt();
-                }
-                int choice = Integer.parseInt(sc.nextLine());
+                int choice = integerCheck(sc);
                 while (choice > 4) {
                     System.out.println("Please select an appropriate answer");
                     choice = Integer.parseInt(sc.nextLine());
