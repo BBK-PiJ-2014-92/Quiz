@@ -1,6 +1,8 @@
 package Client;
 
 import Interfaces.Question;
+import Interfaces.Quiz;
+import Interfaces.Score;
 import Quiz.QuestionImpl;
 import Server.QuizService;
 
@@ -94,6 +96,27 @@ public class SetupClient {
                     e.printStackTrace();
                 }
             }
+        }
+    }
+
+    public Score closeQuiz() throws RemoteException {
+        List<Quiz> openedQuizzes = server.currentQuizzes();
+        for (Quiz quiz : openedQuizzes) {
+            if (quiz.getClosed()) {
+                openedQuizzes.remove(quiz);
+            }
+        }
+        System.out.println("Here is a current list of opened quizzes: ");
+        for (Quiz quiz : openedQuizzes) {
+            System.out.println(quiz);
+        }
+        System.out.println("Select which quiz to close by typing in the ID number (type in any non number to quit)");
+        Scanner sc = new Scanner(System.in);
+        if (!sc.hasNextInt()) {
+            System.out.println("Thanks for playing");
+            return null;
+        }else {
+
         }
     }
 }
