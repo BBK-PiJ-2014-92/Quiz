@@ -82,17 +82,16 @@ public class SetupClient {
         Scanner sc = new Scanner(System.in);
         System.out.println("Name of Quiz: ");
         String name = sc.nextLine();
-        name = whileBlank(name);
+        name = whileBlank(name, sc);
         int id = server.newQuiz(name);
         addQuestions(id, sc);
         System.out.println("Quiz " + name + " has ID " + id);
         return id;
     }
 
-    private String whileBlank(String parameter) {
+    private String whileBlank(String parameter, Scanner sc) {
         while (parameter.trim().isEmpty()) {
             System.out.println("Cannot be blank. Please try again");
-            Scanner sc = new Scanner(System.in);
             parameter = sc.nextLine();
         }
         return parameter;
@@ -104,11 +103,11 @@ public class SetupClient {
         while (!finished) {
             System.out.println("Please enter a question: ");
             String question = sc.nextLine();
-            question = whileBlank(question);
+            question = whileBlank(question, sc);
 
             System.out.println("Please enter the correct answer to this question: ");
             String correctAnswer = sc.nextLine();
-            correctAnswer = whileBlank(correctAnswer);
+            correctAnswer = whileBlank(correctAnswer, sc);
 
             System.out.println("Please enter the number of wrong answers you want to include (must be at least 3): ");
             while (!sc.hasNextInt()) {
@@ -123,7 +122,7 @@ public class SetupClient {
             List<String> possibleAnswers = new ArrayList<String>();
             for (int i = 0; i < size; i++) {
                 String answer = sc.nextLine();
-                answer = whileBlank(answer);
+                answer = whileBlank(answer, sc);
                 possibleAnswers.add(answer);
             }
             Question q = new QuestionImpl(question, correctAnswer, possibleAnswers);
