@@ -79,9 +79,10 @@ public class SetupClientTest {
 
     @Test
     public void testOpenQuiz() throws RemoteException {
-        String answer = "1\n1";
+        String answer = "1";
         System.setIn(new ByteArrayInputStream(answer.getBytes()));
         maker.closeQuiz();
+        System.setIn(new ByteArrayInputStream(answer.getBytes()));
         maker.openQuiz();
         assertFalse(maker.getServer().getQuiz(1).getClosed());
     }
