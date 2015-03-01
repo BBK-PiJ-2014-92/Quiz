@@ -6,6 +6,7 @@ import org.junit.After;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.rmi.RemoteException;
 
@@ -34,6 +35,9 @@ public class SetupClientTest {
 
     @Test
     public void testNewQuiz() throws RemoteException {
+        String answers = "Conan the Barbarian\nWhat is best is life?\nCrush our enemies. See them driven before you and to hear the lamentation of the their women\n3\nA nice walk on the beach\nA nice walk on the beach\nIce cream\nI don't know\nN";
+        ByteArrayInputStream bais = new ByteArrayInputStream(answers.getBytes());
+        System.setIn(bais);
         maker.serverConnection();
         int actual = maker.newQuiz();
         int expected = 1;
