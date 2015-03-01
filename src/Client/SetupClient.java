@@ -140,7 +140,8 @@ public class SetupClient {
             }else { //Interpret every other answer as no, in order to save the progress made
                 questions.add(q);
                 try {
-                    server.getQuiz(id).addQuestions(questions);
+                    server.addQuestions(id, questions);
+                    System.out.println(server.getQuiz(id));
                     finished = true;
                 } catch (RemoteException e) {
                     e.printStackTrace();
