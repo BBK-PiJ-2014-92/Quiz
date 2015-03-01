@@ -24,7 +24,7 @@ public class PlayerClientTest {
         serverLauncher.launch();
         maker = new SetupClient();
         player = new PlayerClient();
-        String answers = "Conan the Barbarian\nWhat is best is life?\nCrush our enemies. See them driven before you and to hear the lamentation of the their women\n3\nA nice walk on the beach\nA nice walk on the beach\nIce cream\nI don't know\nN";
+        String answers = "Conan the Barbarian\nWhat is best is life?\nCrush our enemies. See them driven before you and to hear the lamentation of the their women\n3\nA nice walk on the beach\nIce cream\nI don't know\nN";
         ByteArrayInputStream bais = new ByteArrayInputStream(answers.getBytes());
         System.setIn(bais);
         maker.serverConnection();
@@ -42,12 +42,12 @@ public class PlayerClientTest {
 
     @Test
     public void testPlayQuiz() throws RemoteException {
-        String answer = "1\nAhmed\n1\n1";
+        String answer = "1\nAhmed\n1";
         ByteArrayInputStream bais = new ByteArrayInputStream(answer.getBytes());
         System.setIn(bais);
         player.serverConnection();
         player.playQuiz();
-        String actual = player.getServer().getQuiz(0).getPlayers().get(0);
+        String actual = player.getServer().getQuiz(1).getPlayers().get(0);
         String expected = "AHMED";
         assertEquals(expected, actual);
     }
