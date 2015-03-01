@@ -84,7 +84,7 @@ public class SetupClient {
         String name = sc.nextLine();
         name = whileBlank(name);
         int id = server.newQuiz(name);
-        addQuestions(id);
+        addQuestions(id, sc);
         System.out.println("Quiz " + name + " has ID " + id);
         return id;
     }
@@ -98,10 +98,9 @@ public class SetupClient {
         return parameter;
     }
 
-    public void addQuestions(int id) {
+    public void addQuestions(int id, Scanner sc) {
         boolean finished = false;
         List<Question> questions = new ArrayList<Question>();
-        Scanner sc = new Scanner(System.in);
         while (!finished) {
             System.out.println("Please enter a question: ");
             String question = sc.nextLine();
@@ -169,8 +168,9 @@ public class SetupClient {
         }
         System.out.println("Select which quiz to add questions to by typing in the ID number (type in any non number to quit)");
         int id = getIDFromGivenList(idsOfQuizzes);
+        Scanner sc = new Scanner(System.in);
         if (id != 0) {
-            addQuestions(id);
+            addQuestions(id, sc);
         }
     }
 
