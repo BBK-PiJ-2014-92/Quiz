@@ -44,8 +44,11 @@ public class SetupClient {
         System.out.println("4. Add questions to an existing quiz");
         System.out.println("5. Quit");
         Scanner sc = new Scanner(System.in);
-        while (!sc.hasNextInt()) {
+        boolean isInt = sc.hasNextInt();
+        while (!isInt) {
             System.out.println("Please enter a number");
+            sc.nextLine();
+            isInt = sc.hasNextInt();
         }
         int number = sc.nextInt();
         switch (number) {
@@ -66,7 +69,6 @@ public class SetupClient {
                 break;
             default:
                 System.out.println("Please enter one of the available options");
-                break;
         }
     }
 
