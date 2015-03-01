@@ -21,13 +21,16 @@ public class ClientLauncher {
             System.out.println("2. Play Quiz");
             System.out.println("3. Quit");
             Scanner sc = new Scanner(System.in);
-            boolean isInt = sc.hasNextInt();
-            while (!isInt) {
-                System.out.println("Please enter a number");
-                sc.nextLine();
-                isInt = sc.hasNextInt();
+            int number = 0;
+            boolean done = false;
+            while (!done) {
+                try {
+                    number = Integer.parseInt(sc.nextLine());
+                    done = true;
+                }catch (NumberFormatException e) {
+                    System.out.println("Please enter a number: ");
+                }
             }
-            int number = Integer.parseInt(sc.nextLine());
             switch (number) {
                 case 1:
                     new SetupClient().launch();
