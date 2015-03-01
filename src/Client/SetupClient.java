@@ -46,13 +46,7 @@ public class SetupClient {
             System.out.println("4. Add questions to an existing quiz");
             System.out.println("5. Quit");
             Scanner sc = new Scanner(System.in);
-            boolean isInt = sc.hasNextInt();
-            while (!isInt) {
-                System.out.println("Please enter a number");
-                sc.nextLine();
-                isInt = sc.hasNextInt();
-            }
-            int number = Integer.parseInt(sc.nextLine());
+            int number = integerCheck(sc);
             switch (number) {
                 case 1:
                     newQuiz();
@@ -102,12 +96,15 @@ public class SetupClient {
     }
 
     private int integerCheck(Scanner sc) {
-        int number;
-        try {
-            number = Integer.parseInt(sc.nextLine());
-        }catch (NumberFormatException e) {
-            System.out.println("Please enter a number: ");
-            number = Integer.parseInt(sc.nextLine());
+        int number = 0;
+        boolean done = false;
+        while (!done) {
+            try {
+                number = Integer.parseInt(sc.nextLine());
+                done = true;
+            }catch (NumberFormatException e) {
+                System.out.println("Please enter a number: ");
+            }
         }
         return number;
     }
