@@ -99,6 +99,10 @@ public class SetupClient {
         }
     }
 
+    public void addQuestions() throws RemoteException {
+        List<Quiz> quizzes = server.currentQuizzes();
+    }
+
     public Score closeQuiz() throws RemoteException {
         List<Quiz> openedQuizzes = server.currentQuizzes();
         List<Integer> idsOfQuizzes = new ArrayList<Integer>();
@@ -142,7 +146,7 @@ public class SetupClient {
             System.out.println(quiz);
             idsOfQuizzes.add(quiz.getID());
         }
-        System.out.println("Select which quiz to close by typing in the ID number (type in any non number to quit)");
+        System.out.println("Select which quiz to open by typing in the ID number (type in any non number to quit)");
         Scanner sc = new Scanner(System.in);
         if (!sc.hasNextInt()) {
             System.out.println("Thanks for playing");
@@ -153,7 +157,6 @@ public class SetupClient {
                 id = sc.nextInt();
             }
             server.openQuiz(id);
-            ;
             System.out.println("Quiz " + id + " is now open");
         }
     }
