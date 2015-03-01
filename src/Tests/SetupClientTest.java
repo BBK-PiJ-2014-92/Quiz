@@ -1,6 +1,8 @@
 package Tests;
 
 import Client.SetupClient;
+import Interfaces.Question;
+import Quiz.QuestionImpl;
 import Server.QuizServerLauncher;
 import org.junit.After;
 import org.junit.BeforeClass;
@@ -9,6 +11,8 @@ import org.junit.Test;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
@@ -25,13 +29,13 @@ public class SetupClientTest {
     }
 
     @After
-    public void tearDown() {
+    public void tearDown() throws RemoteException {
         File testFile = new File("Quiz.txt");
         if(testFile.exists()) {
             testFile.delete();
         }
+        maker.getServer().setQuizzes(null);
     }
-
 
     @Test
     public void testNewQuiz() throws RemoteException {
@@ -45,8 +49,16 @@ public class SetupClientTest {
     }
 
     @Test
-    public void testAddQuestions()  {
-
+    public void testAddQuestions() throws RemoteException {
+        String answers = "1\nWho played Conan the Barbarian (1982)\nArnold Schwarzenegger\n3\nSylvester Stallone\nJason Statham\nJason Momoa\nN";
+        ByteArrayInputStream bais = new ByteArrayInputStream(answers.getBytes());
+        System.setIn(bais);
+        maker.serverConnection();
+        maker.addQuestions();
+        List<String> possibleAnswers = new ArrayList<String>();
+        Question actual = maker.getServer().getQuiz(1).getQuestions().get(1);
+        Question expected = new QuestionImpl("Who played Conan the Barbarian (1982", "Arnold Schwarzenegger",possibleAnswers); //Overrode equals and hashCode function such that it only checks that the question and the correct answer are equal
+        assertEquals(expected, actual);
     }
 
     @Test
