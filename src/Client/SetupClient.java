@@ -154,7 +154,7 @@ public class SetupClient {
         if (!sc.hasNextInt()) {
             System.out.println("Thanks for playing");
         }else {
-            id = sc.nextInt();
+            id = Integer.parseInt(sc.nextLine());
             while (!listOfIDs.contains(id)) {
                 System.out.println("Please enter a number from the list");
                 id = sc.nextInt();
