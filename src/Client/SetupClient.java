@@ -146,9 +146,8 @@ public class SetupClient {
         }
     }
 
-    private int getIDFromGivenList (List<Integer> listOfIDs) {
+    private int getIDFromGivenList (List<Integer> listOfIDs, Scanner sc) {
         int id = 0;
-        Scanner sc = new Scanner(System.in);
         if (!sc.hasNextInt()) {
             System.out.println("Thanks for playing");
         }else {
@@ -170,8 +169,8 @@ public class SetupClient {
             idsOfQuizzes.add(quiz.getID());
         }
         System.out.println("Select which quiz to add questions to by typing in the ID number (type in any non number to quit)");
-        int id = getIDFromGivenList(idsOfQuizzes);
         Scanner sc = new Scanner(System.in);
+        int id = getIDFromGivenList(idsOfQuizzes,sc);
         if (id != 0) {
             addQuestions(id, sc);
         }
@@ -191,7 +190,8 @@ public class SetupClient {
             idsOfQuizzes.add(quiz.getID());
         }
         System.out.println("Select which quiz to close by typing in the ID number (type in any non number to quit)");
-        int id = getIDFromGivenList(idsOfQuizzes);
+        Scanner sc = new Scanner(System.in);
+        int id = getIDFromGivenList(idsOfQuizzes,sc);
         Score topScore = null;
         if (id != 0) {
             topScore = server.closeQuiz(id);
@@ -214,7 +214,8 @@ public class SetupClient {
             idsOfQuizzes.add(quiz.getID());
         }
         System.out.println("Select which quiz to open by typing in the ID number (type in any non number to quit)");
-        int id = getIDFromGivenList(idsOfQuizzes);
+        Scanner sc = new Scanner(System.in);
+        int id = getIDFromGivenList(idsOfQuizzes, sc);
         server.openQuiz(id);
         System.out.println("Quiz " + id + " is now open");
     }
