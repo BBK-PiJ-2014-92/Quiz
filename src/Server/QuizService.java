@@ -17,7 +17,7 @@ public interface QuizService extends Remote{
      * Returns the current ID
      * @return the current ID
      */
-    public IdSingleton getQuizIDs();
+    public IdSingleton getQuizIDs() throws RemoteException;
     /**
      *
      * Creates a new quiz on the server and returns the quiz ID
