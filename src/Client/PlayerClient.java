@@ -2,6 +2,7 @@ package Client;
 
 import Interfaces.Question;
 import Interfaces.Quiz;
+import Interfaces.Score;
 import Server.QuizService;
 
 import java.rmi.NotBoundException;
@@ -11,6 +12,7 @@ import java.rmi.registry.Registry;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.TreeSet;
 
 /**
  * Created by Ahmed
@@ -84,7 +86,7 @@ public class PlayerClient {
         return id;
     }
 
-    public int playQuiz() throws RemoteException {
+    public void playQuiz() throws RemoteException {
         List<Quiz> openedQuizzes = new ArrayList<Quiz>();
         List<Integer> idsOfQuizzes = new ArrayList<Integer>();
         int score = 0;
@@ -135,10 +137,25 @@ public class PlayerClient {
             score = server.playQuiz(player, id, answers);
         }
         System.out.println("Final score: " + score);
-        return score;
     }
 
-    public void highScores() {
-
+    public void highScores() throws RemoteException {
+        List<Integer> idsOfQuizzes = new ArrayList<Integer>();
+        if (server.currentQuizzes().isEmpty()) {
+            System.out.println("There are no available quizzes");
+        } else {
+            System.out.println("Here is a list of all the quizzes: ");
+            for (Quiz quiz : server.currentQuizzes()) {
+                System.out.println(quiz);
+                idsOfQuizzes.add(quiz.getID());
+            }
+            System.out.println("Select which quiz to see the highscores of by typing in the ID number (type in any non number to quit)");
+            Scanner sc = new Scanner(System.in);
+            int id = getIDFromGivenList(idsOfQuizzes, sc);
+            TreeSet<Score> highscores = server.getQuiz(id).getHighScores();
+            for (Score score : highscores) {
+                System.out.println(score.getName() + " " + score.getScore());
+            }
+        }
     }
 }
