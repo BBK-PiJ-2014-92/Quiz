@@ -16,7 +16,7 @@ public class SetupClientTest {
     private static QuizServerLauncher serverLauncher;
 
     @BeforeClass
-    public void buildUp() throws RemoteException {
+    public static void buildUp() throws RemoteException {
         serverLauncher = new QuizServerLauncher();
         maker = new SetupClient();
     }
@@ -32,6 +32,7 @@ public class SetupClientTest {
 
     @Test
     public void testNewQuiz() throws RemoteException {
+        maker.serverConnection();
         int actual = maker.newQuiz();
         int expected = 1;
         assertEquals(expected, actual);
