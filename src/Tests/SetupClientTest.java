@@ -9,6 +9,8 @@ import org.junit.Test;
 import java.io.File;
 import java.rmi.RemoteException;
 
+import static org.junit.Assert.assertEquals;
+
 public class SetupClientTest {
     private static SetupClient maker;
     private static QuizServerLauncher serverLauncher;
@@ -29,8 +31,10 @@ public class SetupClientTest {
 
 
     @Test
-    public void testNewQuiz() {
-
+    public void testNewQuiz() throws RemoteException {
+        int actual = maker.newQuiz();
+        int expected = 1;
+        assertEquals(expected, actual);
     }
 
     @Test
