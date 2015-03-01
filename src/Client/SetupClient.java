@@ -52,7 +52,7 @@ public class SetupClient {
                 sc.nextLine();
                 isInt = sc.hasNextInt();
             }
-            int number = sc.nextInt();
+            int number = Integer.parseInt(sc.nextLine());
             switch (number) {
                 case 1:
                     newQuiz();
@@ -134,7 +134,7 @@ public class SetupClient {
             }
             Question q = new QuestionImpl(question, correctAnswer, possibleAnswers);
             System.out.println("Add another question? Y/N");
-            String yesOrNo = sc.nextLine();
+            String yesOrNo = answer;
             if (yesOrNo.equals("Y") || yesOrNo.equals("y")) {
                 questions.add(q);
             }else { //Interpret every other answer as no, in order to save the progress made
