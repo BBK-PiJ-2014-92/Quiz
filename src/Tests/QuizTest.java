@@ -26,7 +26,7 @@ public class QuizTest {
         Question q1 = new QuestionImpl("Can a monkey fight a man?", "MUDA MUDA MUDA!", answers1 );
         List<Question> questions = new ArrayList<Question>();
         questions.add(q1);
-        quiz = new QuizImpl("The Art of Muda!");
+        quiz = new QuizImpl("The Art of Muda!", 1);
         quiz.addQuestions(questions);
         answers = new ArrayList<String>();
     }
