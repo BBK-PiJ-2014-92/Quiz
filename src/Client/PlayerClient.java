@@ -85,7 +85,7 @@ public class PlayerClient {
         return id;
     }
 
-    public Score playQuiz() throws RemoteException {
+    public int playQuiz() throws RemoteException {
         List<Quiz> openedQuizzes = new ArrayList<Quiz>();
         List<Integer> idsOfQuizzes = new ArrayList<Integer>();
         for (Quiz quiz : server.currentQuizzes()) {
@@ -132,7 +132,7 @@ public class PlayerClient {
                     System.out.println("The correct answer is " + question.getCorrectAnswer());
                 }
             }
-            server.playQuiz(player, )
+            int score = server.playQuiz(player, id, answers);
 
         }
         return null;
