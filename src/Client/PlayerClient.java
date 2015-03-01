@@ -63,6 +63,10 @@ public class PlayerClient {
         }
     }
 
+    public QuizService getServer() {
+        return server;
+    }
+
     public Score playQuiz() {
 
     }
