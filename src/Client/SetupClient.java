@@ -19,7 +19,7 @@ public class SetupClient {
     private QuizService server;
 
     public void serverConnection() {
-        Registry registry = null;
+        Registry registry;
         try {
             registry = LocateRegistry.getRegistry(1099);
             server = (QuizService) registry.lookup("quiz");
@@ -80,9 +80,19 @@ public class SetupClient {
                 possibleAnswers.add(answer);
             }
             Question q = new QuestionImpl(question, correctAnswer, possibleAnswers);
-            questions.add(q);
             System.out.println("Add another question? Y/N");
             String yesOrNo = sc.nextLine();
+            if (yesOrNo.equals("Y") || yesOrNo.equals("y")) {
+                questions.add(q);
+            }else { //Interpret every other answer as no, in order to save the progress made
+                questions.add(q);
+                try {
+                    server.getQuiz(id).addQuestions(questions);
+                    finished = true;
+                } catch (RemoteException e) {
+                    e.printStackTrace();
+                }
+            }
         }
     }
 }
