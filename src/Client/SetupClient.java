@@ -157,7 +157,7 @@ public class SetupClient {
             id = Integer.parseInt(sc.nextLine());
             while (!listOfIDs.contains(id)) {
                 System.out.println("Please enter a number from the list");
-                id = sc.nextInt();
+                id = Integer.parseInt(sc.nextLine());
             }
         }
         return id;
@@ -179,27 +179,36 @@ public class SetupClient {
         }
     }
 
-    public Score closeQuiz() throws RemoteException {
+    public synchronized Score closeQuiz() throws RemoteException {
         List<Quiz> openedQuizzes = server.currentQuizzes();
         List<Integer> idsOfQuizzes = new ArrayList<Integer>();
+        Score topScore = null;
         for (Quiz quiz : openedQuizzes) {
             if (quiz.getClosed()) {
                 openedQuizzes.remove(quiz);
             }
         }
-        System.out.println("Here is a current list of opened quizzes: ");
-        for (Quiz quiz : openedQuizzes) {
-            System.out.println(quiz);
-            idsOfQuizzes.add(quiz.getID());
+        if (openedQuizzes.isEmpty()) {
+            System.out.println("There are no available open quizzes to be closed");
+        }else {
+            System.out.println("Here is a current list of opened quizzes: ");
+            for (Quiz quiz : openedQuizzes) {
+                System.out.println(quiz);
+                idsOfQuizzes.add(quiz.getID());
+            }
+            System.out.println("Select which quiz to close by typing in the ID number (type in any non number to quit)");
+            Scanner sc = new Scanner(System.in);
+            int id = getIDFromGivenList(idsOfQuizzes,sc);
+            if (id != 0) {
+                topScore = server.closeQuiz(id);
+                if (topScore == null) {
+                    System.out.println("No one has attempted this quiz");
+                }else {
+                    System.out.println("The top score for this quiz is " + topScore.getScore() + " by " + topScore.getName());
+                }
+            }
         }
-        System.out.println("Select which quiz to close by typing in the ID number (type in any non number to quit)");
-        Scanner sc = new Scanner(System.in);
-        int id = getIDFromGivenList(idsOfQuizzes,sc);
-        Score topScore = null;
-        if (id != 0) {
-            topScore = server.closeQuiz(id);
-            System.out.println("The top score for this quiz is " + topScore.getScore() + " by " + topScore.getName());
-        }
+
         return topScore;
     }
 
