@@ -100,27 +100,31 @@ public class SetupClient {
     }
 
     private int getIDFromGivenList (List<Integer> listOfIDs) {
-
+        int id = 0;
+        Scanner sc = new Scanner(System.in);
+        if (!sc.hasNextInt()) {
+            System.out.println("Thanks for playing");
+        }else {
+            id = sc.nextInt();
+            while (!listOfIDs.contains(id)) {
+                System.out.println("Please enter a number from the list");
+                id = sc.nextInt();
+            }
+        }
+        return id;
     }
 
     public void addQuestions() throws RemoteException {
         List<Quiz> quizzes = server.currentQuizzes();
         List<Integer> idsOfQuizzes = new ArrayList<Integer>();
-        System.out.println("Here is a current list of opened quizzes: ");
+        System.out.println("Here is a current list of quizzes: ");
         for (Quiz quiz : quizzes) {
             System.out.println(quiz);
             idsOfQuizzes.add(quiz.getID());
         }
         System.out.println("Select which quiz to add questions to by typing in the ID number (type in any non number to quit)");
-        Scanner sc = new Scanner(System.in);
-        if (!sc.hasNextInt()) {
-            System.out.println("Thanks for playing");
-        }else {
-            int id = sc.nextInt();
-            while (!idsOfQuizzes.contains(id)) {
-                System.out.println("Please enter a number from the list");
-                id = sc.nextInt();
-            }
+        int id = getIDFromGivenList(idsOfQuizzes);
+        if (id != 0) {
             addQuestions(id);
         }
     }
@@ -139,20 +143,13 @@ public class SetupClient {
             idsOfQuizzes.add(quiz.getID());
         }
         System.out.println("Select which quiz to close by typing in the ID number (type in any non number to quit)");
-        Scanner sc = new Scanner(System.in);
-        if (!sc.hasNextInt()) {
-            System.out.println("Thanks for playing");
-            return null;
-        }else {
-            int id = sc.nextInt();
-            while (!idsOfQuizzes.contains(id)) {
-                System.out.println("Please enter a number from the list");
-                id = sc.nextInt();
-            }
-            Score topScore = server.closeQuiz(id);
+        int id = getIDFromGivenList(idsOfQuizzes);
+        Score topScore = null;
+        if (id != 0) {
+            topScore = server.closeQuiz(id);
             System.out.println("The top score for this quiz is " + topScore.getScore() + " by " + topScore.getName());
-            return topScore;
         }
+        return topScore;
     }
 
     public void openQuiz() throws RemoteException {
@@ -169,17 +166,8 @@ public class SetupClient {
             idsOfQuizzes.add(quiz.getID());
         }
         System.out.println("Select which quiz to open by typing in the ID number (type in any non number to quit)");
-        Scanner sc = new Scanner(System.in);
-        if (!sc.hasNextInt()) {
-            System.out.println("Thanks for playing");
-        }else {
-            int id = sc.nextInt();
-            while (!idsOfQuizzes.contains(id)) {
-                System.out.println("Please enter a number from the list");
-                id = sc.nextInt();
-            }
-            server.openQuiz(id);
-            System.out.println("Quiz " + id + " is now open");
-        }
+        int id = getIDFromGivenList(idsOfQuizzes);
+        server.openQuiz(id);
+        System.out.println("Quiz " + id + " is now open");
     }
 }
