@@ -180,12 +180,12 @@ public class SetupClient {
     }
 
     public synchronized Score closeQuiz() throws RemoteException {
-        List<Quiz> openedQuizzes = server.currentQuizzes();
+        List<Quiz> openedQuizzes = new ArrayList<Quiz>();
         List<Integer> idsOfQuizzes = new ArrayList<Integer>();
         Score topScore = null;
-        for (Quiz quiz : openedQuizzes) {
-            if (quiz.getClosed()) {
-                openedQuizzes.remove(quiz);
+        for (Quiz quiz : server.currentQuizzes()) {
+            if (!quiz.getClosed()) {
+                openedQuizzes.add(quiz);
             }
         }
         if (openedQuizzes.isEmpty()) {
@@ -213,11 +213,11 @@ public class SetupClient {
     }
 
     public void openQuiz() throws RemoteException {
-        List<Quiz> closedQuizzes = server.currentQuizzes();
+        List<Quiz> closedQuizzes = new ArrayList<Quiz>();
         List<Integer> idsOfQuizzes = new ArrayList<Integer>();
-        for (Quiz quiz : closedQuizzes) {
-            if (!quiz.getClosed()) {
-                closedQuizzes.remove(quiz);
+        for (Quiz quiz : server.currentQuizzes()) {
+            if (quiz.getClosed()) {
+                closedQuizzes.add(quiz);
             }
         }
         System.out.println("Here is a current list of closed quizzes: ");
