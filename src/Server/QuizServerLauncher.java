@@ -14,7 +14,7 @@ public class QuizServerLauncher {
         launcher.launch();
     }
 
-    private void launch() {
+    public void launch() {
         try {
             LocateRegistry.createRegistry(1099);
             QuizServer server = new QuizServer();
