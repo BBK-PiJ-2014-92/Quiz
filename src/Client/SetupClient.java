@@ -15,11 +15,15 @@ import java.util.List;
 import java.util.Scanner;
 
 /**
- * Created by Ahmed on 3/1/2015.
+ * A client class used for generating quizzes on the server
+ * Created by Ahmed
  */
 public class SetupClient {
     private QuizService server;
 
+    /**
+     * Connects the user to the server
+     */
     public void serverConnection() {
         Registry registry;
         try {
@@ -34,6 +38,10 @@ public class SetupClient {
 
     }
 
+    /**
+     * Gives the user choices of creating, closing, opening or adding questions to quizzes
+     * @throws RemoteException
+     */
     public void launch() throws RemoteException {
         serverConnection();
         System.out.println("Welcome to quiz creator!");
@@ -72,10 +80,20 @@ public class SetupClient {
         }
     }
 
+    /**
+     * Returns the server
+     * @return the server
+     */
     public QuizService getServer() {
         return server;
     }
 
+    /**
+     * Returns the ID of the newly created quiz on the server. This method calls another method, addQuestions before
+     * terminating.
+     * @return the ID of the newly created quiz
+     * @throws RemoteException
+     */
     public int newQuiz() throws RemoteException {
         Scanner sc = new Scanner(System.in);
         System.out.println("Name of Quiz: ");
@@ -87,6 +105,13 @@ public class SetupClient {
         return id;
     }
 
+    /**
+     * A checker method that checks to see if the inputted parameter is blank. It is to ensure that the user does not
+     * enter a blank string into the other methods, and would loop until the user types in an appropriate parameter
+     * @param parameter the parameter to be tested to see if it is blank
+     * @param sc the input of the user
+     * @return an appropriate string parameter to be used in other methods
+     */
     private String whileBlank(String parameter, Scanner sc) {
         while (parameter.trim().isEmpty()) {
             System.out.println("Cannot be blank. Please try again");
@@ -95,6 +120,11 @@ public class SetupClient {
         return parameter;
     }
 
+    /**
+     * A checker method that loops if the user tries to parse an inappropriate string into an integer
+     * @param sc the input from the user
+     * @return an appropriately parsed integer
+     */
     private int integerCheck(Scanner sc) {
         int number = 0;
         boolean done = false;
@@ -109,6 +139,11 @@ public class SetupClient {
         return number;
     }
 
+    /**
+     * A method which allows the user to add questions to existing or newly created quizzes
+     * @param id the ID of the quiz in which the new questions are going to be added to
+     * @param sc the input of the user in order to decide question name and answers
+     */
     public void addQuestions(int id, Scanner sc) {
         boolean finished = false;
         List<Question> questions = new ArrayList<Question>();
@@ -151,6 +186,12 @@ public class SetupClient {
         }
     }
 
+    /**
+     * Returns ID of a quiz from a given list of IDs. Usually used in smaller more focused lists
+     * @param listOfIDs the list of IDs of quizzes
+     * @param sc the input of the user
+     * @return the ID of a chosen quiz that are available in the list of IDs
+     */
     private int getIDFromGivenList (List<Integer> listOfIDs, Scanner sc) {
         int id = 0;
         if (!sc.hasNextInt()) {
@@ -165,6 +206,10 @@ public class SetupClient {
         return id;
     }
 
+    /**
+     * A method which allows the user to add questions to strictly existing quizzes
+     * @throws RemoteException
+     */
     public void addQuestions() throws RemoteException {
         List<Quiz> quizzes = server.currentQuizzes();
         List<Integer> idsOfQuizzes = new ArrayList<Integer>();
@@ -181,6 +226,11 @@ public class SetupClient {
         }
     }
 
+    /**
+     * Closes the quiz from being played and returns the top player
+     * @return The top player of the quiz or null if none attempted the quiz
+     * @throws RemoteException
+     */
     public Score closeQuiz() throws RemoteException {
         List<Quiz> openedQuizzes = new ArrayList<Quiz>();
         List<Integer> idsOfQuizzes = new ArrayList<Integer>();
@@ -214,6 +264,10 @@ public class SetupClient {
         return topScore;
     }
 
+    /**
+     * Opens a previously closed quiz to be played on by players
+     * @throws RemoteException
+     */
     public void openQuiz() throws RemoteException {
         List<Quiz> closedQuizzes = new ArrayList<Quiz>();
         List<Integer> idsOfQuizzes = new ArrayList<Integer>();

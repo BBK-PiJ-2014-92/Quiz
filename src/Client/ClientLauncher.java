@@ -4,7 +4,8 @@ import java.rmi.RemoteException;
 import java.util.Scanner;
 
 /**
- * Created by Ahmed on 3/1/2015.
+ * The launcher class for the client classes
+ * Created by Ahmed
  */
 public class ClientLauncher {
     public static void main(String[] args) throws RemoteException {
@@ -12,6 +13,10 @@ public class ClientLauncher {
         launcher.launch();
     }
 
+    /**
+     * Gives the user a choice of either setting up a new quiz or playing a quiz
+     * @throws RemoteException
+     */
     public void launch() throws RemoteException {
         System.out.println("Welcome to Quiz Server!");
         boolean finished = false;

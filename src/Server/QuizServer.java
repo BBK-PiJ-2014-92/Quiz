@@ -15,7 +15,8 @@ import java.util.List;
 import java.util.TreeSet;
 
 /**
- * Created by Ahmed on 2/28/2015.
+ * The server in which the clients connect to in order to play/create quizzes
+ * Created by Ahmed
  */
 public class QuizServer extends UnicastRemoteObject implements QuizService {
     private List<Quiz> quizzes;

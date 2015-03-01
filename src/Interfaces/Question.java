@@ -3,7 +3,10 @@ package Interfaces;
 import java.util.List;
 
 /**
- * Created by Ahmed on 2/26/2015.
+ * A class that contains a question, it's correct answer and an arbitrary number of wrong answers
+ *
+ *
+ * Created by Ahmed
  */
 public interface Question {
     /**

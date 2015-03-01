@@ -15,11 +15,15 @@ import java.util.Scanner;
 import java.util.TreeSet;
 
 /**
+ * A client that the player will use to play the quizzes
  * Created by Ahmed
  */
 public class PlayerClient {
     private QuizService server;
 
+    /**
+     * Connects the client to the server
+     */
     public void serverConnection() {
         Registry registry;
         try {
@@ -33,6 +37,9 @@ public class PlayerClient {
         }
     }
 
+    /**
+     * Gives the player 3 options, play a quiz, view the highscores of the quizzes or quit the client
+     */
     public void launch() throws RemoteException {
         serverConnection();
         System.out.println("Welcome to the quiz server!");
@@ -62,10 +69,19 @@ public class PlayerClient {
         }
     }
 
+    /**
+     * Returns the server
+     * @return the server
+     */
     public QuizService getServer() {
         return server;
     }
 
+    /**
+     * A checker method that loops if the user tries to parse an inappropriate string into an integer
+     * @param sc the input from the user
+     * @return an appropriately parsed integer
+     */
     private int integerCheck(Scanner sc) {
         int number = 0;
         boolean done = false;
@@ -94,6 +110,11 @@ public class PlayerClient {
         return id;
     }
 
+    /**
+     * Method which allows the user to view and then decided to play quizzes. This method tells the user if there are no
+     * quizzes available and will print the final score of the chosen quiz
+     * @throws RemoteException
+     */
     public void playQuiz() throws RemoteException {
         List<Quiz> openedQuizzes = new ArrayList<Quiz>();
         List<Integer> idsOfQuizzes = new ArrayList<Integer>();
@@ -141,6 +162,10 @@ public class PlayerClient {
         System.out.println("Final score: " + score);
     }
 
+    /**
+     * Method which displays the highscores for a given quiz, in order of points.
+     * @throws RemoteException
+     */
     public void highScores() throws RemoteException {
         List<Integer> idsOfQuizzes = new ArrayList<Integer>();
         if (server.currentQuizzes().isEmpty()) {

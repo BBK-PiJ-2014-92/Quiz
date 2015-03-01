@@ -10,7 +10,8 @@ import java.rmi.RemoteException;
 import java.util.List;
 
 /**
- * Created by Ahmed on 2/25/2015.
+ * The service in which the clients connect to in order to play/create quizzes
+ * Created by Ahmed
  */
 public interface QuizService extends Remote{
     /**

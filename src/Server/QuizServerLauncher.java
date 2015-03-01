@@ -6,7 +6,8 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 
 /**
- * Created by Ahmed on 2/28/2015.
+ * The launcher class for the QuizServer
+ * Created by Ahmed
  */
 public class QuizServerLauncher {
     public static void main(String[] args) {

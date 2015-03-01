@@ -1,7 +1,9 @@
 package Interfaces;
 
 /**
- * Created by Ahmed on 2/26/2015.
+ * A class for holding the scores of quizzes. It contains the name of the player, and the score
+ * NB: The same player can have the exact same score across many different quizzes
+ * Created by Ahmed
  */
 public interface Score {
     /**

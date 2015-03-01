@@ -3,7 +3,8 @@ package Quiz;
 import java.io.Serializable;
 
 /**
- * Created by Ahmed on 3/1/2015.
+ * A singleton class used for generating ID numbers, specifically for the class Quiz
+ * Created by Ahmed
  */
 public class IdSingleton implements Serializable {
     private int id;

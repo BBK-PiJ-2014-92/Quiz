@@ -8,7 +8,8 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * Created by Ahmed on 2/26/2015.
+ * A class that contains a question, it's correct answer and an arbitrary number of wrong answers
+ * Created by Ahmed
  */
 public class QuestionImpl implements Question, Serializable {
     private String question;
@@ -89,6 +90,11 @@ public class QuestionImpl implements Question, Serializable {
 
     }
 
+    /**
+     * Returns a list of answers to choose from of size 4
+     *
+     * @return A list of answers the player can choose from in random order of size 4
+     */
     public List<String> createChoices() {
         List<String> result = new ArrayList<String>();
         Collections.shuffle(possibleAnswers);

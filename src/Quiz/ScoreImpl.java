@@ -5,7 +5,9 @@ import Interfaces.Score;
 import java.io.Serializable;
 
 /**
- * Created by Ahmed on 2/26/2015.
+ * A class for holding the scores of quizzes. It contains the name of the player, and the score
+ * NB: The same player can have the exact same score across many different quizzes
+ * Created by Ahmed
  */
 public class ScoreImpl implements Score, Serializable, Comparable<Score>{
     private String name;
@@ -16,15 +18,26 @@ public class ScoreImpl implements Score, Serializable, Comparable<Score>{
         this.score = score;
     }
 
-
+    /**
+     * Returns the score of the player
+     *
+     * @return the score of the player
+     */
     public int getScore() {
         return score;
     }
-
+    /**
+     * Returns the name of the player
+     *
+     * @return the name of the player
+     */
     public String getName() {
         return name;
     }
-
+    /**
+     * Sets the score of the player
+     * @param score The new score to be set for the player
+     */
     public void setScore(int score) {
         this.score = score;
     }

@@ -4,7 +4,8 @@ import java.util.List;
 import java.util.TreeSet;
 
 /**
- * Created by Ahmed on 2/25/2015.
+ * A class for quizzes. Contains quiz name, ID, questions and highscores
+ * Created by Ahmed
  */
 public interface Quiz {
     /**
