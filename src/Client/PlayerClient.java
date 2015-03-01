@@ -70,10 +70,23 @@ public class PlayerClient {
         return server;
     }
 
-    public Score playQuiz() {
+    private int getIDFromGivenList (List<Integer> listOfIDs, Scanner sc) {
+        int id = 0;
+        if (!sc.hasNextInt()) {
+            System.out.println("Thanks for playing");
+        }else {
+            id = Integer.parseInt(sc.nextLine());
+            while (!listOfIDs.contains(id)) {
+                System.out.println("Please enter a number from the list");
+                id = Integer.parseInt(sc.nextLine());
+            }
+        }
+        return id;
+    }
+
+    public Score playQuiz() throws RemoteException {
         List<Quiz> openedQuizzes = new ArrayList<Quiz>();
         List<Integer> idsOfQuizzes = new ArrayList<Integer>();
-        Score topScore = null;
         for (Quiz quiz : server.currentQuizzes()) {
             if (!quiz.getClosed()) {
                 openedQuizzes.add(quiz);
@@ -87,7 +100,7 @@ public class PlayerClient {
                 System.out.println(quiz);
                 idsOfQuizzes.add(quiz.getID());
             }
-            System.out.println("Select which quiz to close by typing in the ID number (type in any non number to quit)");
+            System.out.println("Select which quiz to play by typing in the ID number (type in any non number to quit)");
             Scanner sc = new Scanner(System.in);
             int id = getIDFromGivenList(idsOfQuizzes,sc);
             if (id != 0) {
