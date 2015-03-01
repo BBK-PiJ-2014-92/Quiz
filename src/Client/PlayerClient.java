@@ -105,14 +105,14 @@ public class PlayerClient {
             Scanner sc = new Scanner(System.in);
             int id = getIDFromGivenList(idsOfQuizzes,sc);
             System.out.println("Please enter your name: ");
-            String player = sc.nextLine();
+            String player = sc.nextLine().toUpperCase();
             Quiz selectedQuiz = server.getQuiz(id);
             List<String> answers = new ArrayList<String>();
             for (Question question : selectedQuiz.getQuestions()) {
                 System.out.println(question.getQuestionName());
                 List<String> possibleAnswers = question.createChoices();
                 for (int i = 0; i < possibleAnswers.size(); i++) {
-                    System.out.println(i + ". " + possibleAnswers.get(i));
+                    System.out.println(i+1 + ". " + possibleAnswers.get(i));
                 }
                 boolean isInt = sc.hasNextInt();
                 while (!isInt) {
@@ -125,8 +125,8 @@ public class PlayerClient {
                     System.out.println("Please select an appropriate answer");
                     choice = Integer.parseInt(sc.nextLine());
                 }
-                answers.add(possibleAnswers.get(choice));
-                if (server.isCorrectAnswer(question, possibleAnswers.get(choice))) {
+                answers.add(possibleAnswers.get(choice - 1));
+                if (server.isCorrectAnswer(question, possibleAnswers.get(choice - 1))) {
                     System.out.println("Correct");
                 }else {
                     System.out.println("The correct answer is " + question.getCorrectAnswer());
