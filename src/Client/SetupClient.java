@@ -128,4 +128,8 @@ public class SetupClient {
             return topScore;
         }
     }
+
+    public void openQuiz() {
+
+    }
 }
