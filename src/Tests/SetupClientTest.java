@@ -2,6 +2,7 @@ package Tests;
 
 import Client.SetupClient;
 import Interfaces.Question;
+import Interfaces.Score;
 import Quiz.QuestionImpl;
 import Server.QuizServerLauncher;
 import org.junit.AfterClass;
@@ -15,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 public class SetupClientTest {
     private static SetupClient maker;
@@ -67,8 +69,11 @@ public class SetupClientTest {
 
 
     @Test
-    public void testCloseQuiz() {
-
+    public void testCloseQuiz() throws RemoteException {
+        String answer = "1";
+        System.setIn(new ByteArrayInputStream(answer.getBytes()));
+        Score actual = maker.closeQuiz();
+        assertNull(actual);
     }
 
     @Test
