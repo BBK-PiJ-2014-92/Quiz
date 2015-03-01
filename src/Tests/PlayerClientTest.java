@@ -41,7 +41,7 @@ public class PlayerClientTest {
     }
 
     @Test
-    public void testPlayQuiz() throws RemoteException {
+    public void testPlayQuizAndHighScore() throws RemoteException {
         String answer = "1\nAhmed\n1";
         ByteArrayInputStream bais = new ByteArrayInputStream(answer.getBytes());
         System.setIn(bais);
@@ -52,8 +52,4 @@ public class PlayerClientTest {
         assertEquals(expected, actual);
     }
 
-    @Test
-    public void testHighScores() {
-
-    }
 }
