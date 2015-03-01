@@ -13,15 +13,13 @@ import java.util.*;
 public class QuizImpl implements Quiz, Serializable {
     private String name;
     private int quizID;
-    private static int IDCOUNT = 0;
     private List<Question> questions;
     private TreeSet<Score> highScores;
     private boolean closed;
 
-    public QuizImpl(String name) {
+    public QuizImpl(String name, int quizID) {
         this.name = name;
-        IDCOUNT++;
-        this.quizID = IDCOUNT;
+        this.quizID = quizID;
         questions = new ArrayList<Question>();
         highScores = new TreeSet<Score>();
         closed = false;
