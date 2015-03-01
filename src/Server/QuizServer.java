@@ -5,6 +5,7 @@ import Interfaces.Quiz;
 import Interfaces.Score;
 import Quiz.QuizImpl;
 import Quiz.ScoreImpl;
+import Quiz.IdSingleton;
 
 import java.io.*;
 import java.rmi.RemoteException;
@@ -18,21 +19,22 @@ import java.util.TreeSet;
  */
 public class QuizServer extends UnicastRemoteObject implements QuizService {
     private List<Quiz> quizzes;
+    private IdSingleton quizIDs;
 
     @SuppressWarnings("unchecked")
     public QuizServer() throws RemoteException {
         super();
         this.quizzes = new ArrayList<Quiz>();
+        this.quizIDs = new IdSingleton();
         File newFile = new File("Quiz.txt");
         if (newFile.exists()){
             try {
                 FileInputStream fis = new FileInputStream(newFile);
                 ObjectInputStream input = new ObjectInputStream(fis);
-                Object o = input.readObject();
-                if (o instanceof ArrayList<?>) {
-                    this.quizzes = (ArrayList<Quiz>) o;
-                    System.out.println("Quizzes successfully added");
-                }
+                this.quizzes = (ArrayList<Quiz>) input.readObject();
+                System.out.println("Quizzes successfully added");
+                this.quizIDs = (IdSingleton) input.readObject();
+                System.out.println("Quiz IDs successfully added");
                 input.close();
                 fis.close();
             } catch (FileNotFoundException e) {
@@ -47,7 +49,7 @@ public class QuizServer extends UnicastRemoteObject implements QuizService {
     }
 
     public int newQuiz(String quizName) {
-        Quiz quiz = new QuizImpl(quizName);
+        Quiz quiz = new QuizImpl(quizName, quizIDs.generateID());
         quizzes.add(quiz);
         flush();
         return quiz.getID();
