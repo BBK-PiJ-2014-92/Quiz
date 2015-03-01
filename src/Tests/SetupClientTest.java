@@ -29,11 +29,6 @@ public class SetupClientTest {
 
 
     @Test
-    public void testLaunch() {
-
-    }
-
-    @Test
     public void testNewQuiz() {
 
     }
