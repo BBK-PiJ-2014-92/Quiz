@@ -15,8 +15,7 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
+import static org.junit.Assert.*;
 
 public class SetupClientTest {
     private static SetupClient maker;
@@ -74,10 +73,16 @@ public class SetupClientTest {
         System.setIn(new ByteArrayInputStream(answer.getBytes()));
         Score actual = maker.closeQuiz();
         assertNull(actual);
+
+        assertTrue(maker.getServer().getQuiz(1).getClosed());
     }
 
     @Test
-    public void testOpenQuiz() {
-
+    public void testOpenQuiz() throws RemoteException {
+        String answer = "1\n1";
+        System.setIn(new ByteArrayInputStream(answer.getBytes()));
+        maker.closeQuiz();
+        maker.openQuiz();
+        assertFalse(maker.getServer().getQuiz(1).getClosed());
     }
 }
