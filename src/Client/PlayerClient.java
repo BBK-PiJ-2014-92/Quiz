@@ -1,5 +1,6 @@
 package Client;
 
+import Interfaces.Quiz;
 import Interfaces.Score;
 import Server.QuizService;
 
@@ -7,6 +8,8 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -68,7 +71,36 @@ public class PlayerClient {
     }
 
     public Score playQuiz() {
+        List<Quiz> openedQuizzes = new ArrayList<Quiz>();
+        List<Integer> idsOfQuizzes = new ArrayList<Integer>();
+        Score topScore = null;
+        for (Quiz quiz : server.currentQuizzes()) {
+            if (!quiz.getClosed()) {
+                openedQuizzes.add(quiz);
+            }
+        }
+        if (openedQuizzes.isEmpty()) {
+            System.out.println("There are no available quizzes available");
+        }else {
+            System.out.println("Here is a current list of opened quizzes: ");
+            for (Quiz quiz : openedQuizzes) {
+                System.out.println(quiz);
+                idsOfQuizzes.add(quiz.getID());
+            }
+            System.out.println("Select which quiz to close by typing in the ID number (type in any non number to quit)");
+            Scanner sc = new Scanner(System.in);
+            int id = getIDFromGivenList(idsOfQuizzes,sc);
+            if (id != 0) {
+                topScore = server.closeQuiz(id);
+                if (topScore == null) {
+                    System.out.println("No one has attempted this quiz");
+                }else {
+                    System.out.println("The top score for this quiz is " + topScore.getScore() + " by " + topScore.getName());
+                }
+            }
+        }
 
+        return topScore;
     }
 
     public void highScores() {
