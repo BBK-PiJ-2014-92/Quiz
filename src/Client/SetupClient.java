@@ -120,16 +120,17 @@ public class SetupClient {
                 sc.nextLine();
                 isInt = sc.hasNextInt();
             }
-            int size = sc.nextInt();
+            int size = Integer.parseInt(sc.nextLine());
             while (size < 3) {
                 System.out.println("Please enter a number greater than or equal to 3: ");
-                size = sc.nextInt();
+                size = Integer.parseInt(sc.nextLine());
             }
             List<String> possibleAnswers = new ArrayList<String>();
+            String answer = sc.nextLine();
             for (int i = 0; i < size; i++) {
-                String answer = sc.nextLine();
                 answer = whileBlank(answer, sc);
                 possibleAnswers.add(answer);
+                answer = sc.nextLine();
             }
             Question q = new QuestionImpl(question, correctAnswer, possibleAnswers);
             System.out.println("Add another question? Y/N");
