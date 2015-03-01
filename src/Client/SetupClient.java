@@ -125,20 +125,13 @@ public class SetupClient {
             correctAnswer = whileBlank(correctAnswer, sc);
 
             System.out.println("Please enter the number of wrong answers you want to include (must be at least 3): ");
-            boolean isInt = sc.hasNextInt();
-            while (!isInt) {
-                System.out.println("Please enter a number");
-                sc.nextLine();
-                isInt = sc.hasNextInt();
-            }
-            int size = Integer.parseInt(sc.nextLine());
+            int size = integerCheck(sc);
             while (size < 3) {
                 System.out.println("Please enter a number greater than or equal to 3: ");
-
-
+                size = integerCheck(sc);
             }
             List<String> possibleAnswers = new ArrayList<String>();
-            String answer = null;
+            String answer;
             for (int i = 0; i < size; i++) {
                 answer = sc.nextLine();
                 answer = whileBlank(answer, sc);
@@ -243,8 +236,11 @@ public class SetupClient {
             System.out.println("Select which quiz to open by typing in the ID number (type in any non number to quit)");
             Scanner sc = new Scanner(System.in);
             int id = getIDFromGivenList(idsOfQuizzes, sc);
-            server.openQuiz(id);
-            System.out.println("Quiz " + id + " is now open");
+            if (id != 0) {
+                server.openQuiz(id);
+                System.out.println("Quiz " + id + " is now open");
+            }
+
         }
     }
 }
