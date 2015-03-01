@@ -3,6 +3,7 @@ package Server;
 import Interfaces.Question;
 import Interfaces.Quiz;
 import Interfaces.Score;
+import Quiz.IdSingleton;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
@@ -12,6 +13,11 @@ import java.util.List;
  * Created by Ahmed on 2/25/2015.
  */
 public interface QuizService extends Remote{
+    /**
+     * Returns the current ID
+     * @return the current ID
+     */
+    public IdSingleton getQuizIDs();
     /**
      *
      * Creates a new quiz on the server and returns the quiz ID

@@ -48,6 +48,10 @@ public class QuizServer extends UnicastRemoteObject implements QuizService {
 
     }
 
+    public IdSingleton getQuizIDs() {
+        return quizIDs;
+    }
+
     public int newQuiz(String quizName) {
         Quiz quiz = new QuizImpl(quizName, quizIDs.generateID());
         quizzes.add(quiz);
