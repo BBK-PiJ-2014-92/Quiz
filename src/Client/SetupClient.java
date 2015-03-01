@@ -6,6 +6,7 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import java.util.Scanner;
 
 /**
  * Created by Ahmed on 3/1/2015.
@@ -25,5 +26,11 @@ public class SetupClient {
             e.printStackTrace();
         }
 
+    }
+
+    public int newQuiz() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Name of Quiz: ");
+        String name = sc.nextLine();
     }
 }
