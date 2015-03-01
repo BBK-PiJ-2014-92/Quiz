@@ -1,5 +1,7 @@
 package Client;
 
+import Interfaces.Question;
+import Quiz.QuestionImpl;
 import Server.QuizService;
 
 import java.rmi.NotBoundException;
@@ -51,6 +53,7 @@ public class SetupClient {
 
     public void addQuestions(int id) {
         boolean finished = false;
+        List<Question> questions = new ArrayList<Question>();
         Scanner sc = new Scanner(System.in);
         while (!finished) {
             System.out.println("Please enter a question: ");
@@ -71,8 +74,16 @@ public class SetupClient {
             for (int i = 0; i < size; i++) {
                 String answer = sc.nextLine();
                 answer = whileBlank(answer);
+                possibleAnswers.add(answer);
             }
-            finished = true;
+            Question q = new QuestionImpl(question, correctAnswer, possibleAnswers);
+            questions.add(q);
+            System.out.println("Add another question? Y/N");
+            String yesOrNo = sc.nextLine();
+           if (yesOrNo.equals("N") || yesOrNo.equals("n")) {
+               finished = true;
+           }
+
         }
     }
 }
