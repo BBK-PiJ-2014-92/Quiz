@@ -28,9 +28,16 @@ public class SetupClient {
 
     }
 
-    public int newQuiz() {
+    public int newQuiz() throws RemoteException {
         Scanner sc = new Scanner(System.in);
         System.out.println("Name of Quiz: ");
         String name = sc.nextLine();
+        while (name.trim().isEmpty() || name == null) {
+            System.out.println("Quiz name cannot be blank nor null. Pleas try again");
+            name = sc.nextLine();
+        }
+        return server.newQuiz(name);
     }
+
+    public void addQuestions
 }
