@@ -65,6 +65,9 @@ public class SetupClient {
             correctAnswer = whileBlank(correctAnswer);
 
             System.out.println("Please enter the number of wrong answers you want to include (must be at least 3): ");
+            while (!sc.hasNextInt()) {
+                System.out.println("Please enter a number: ");
+            }
             int size = sc.nextInt();
             while (size < 3) {
                 System.out.println("Please enter a number greater than or equal to 3: ");
@@ -80,10 +83,6 @@ public class SetupClient {
             questions.add(q);
             System.out.println("Add another question? Y/N");
             String yesOrNo = sc.nextLine();
-           if (yesOrNo.equals("N") || yesOrNo.equals("n")) {
-               finished = true;
-           }
-
         }
     }
 }
