@@ -6,26 +6,27 @@ import org.junit.After;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import java.io.File;
 import java.rmi.RemoteException;
 
 public class SetupClientTest {
     private static SetupClient maker;
+    private static QuizServerLauncher serverLauncher;
 
     @BeforeClass
     public void buildUp() throws RemoteException {
-        QuizServerLauncher.main();
+        serverLauncher = new QuizServerLauncher();
         maker = new SetupClient();
     }
 
     @After
     public void tearDown() {
-
+        File testFile = new File("Quiz.txt");
+        if(testFile.exists()) {
+            testFile.delete();
+        }
     }
 
-    @Test
-    public void testServerConnection() {
-
-    }
 
     @Test
     public void testLaunch() {
