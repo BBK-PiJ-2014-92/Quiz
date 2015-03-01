@@ -101,6 +101,17 @@ public class SetupClient {
         return parameter;
     }
 
+    private int integerCheck(Scanner sc) {
+        int number;
+        try {
+            number = Integer.parseInt(sc.nextLine());
+        }catch (NumberFormatException e) {
+            System.out.println("Please enter a number: ");
+            number = Integer.parseInt(sc.nextLine());
+        }
+        return number;
+    }
+
     public void addQuestions(int id, Scanner sc) {
         boolean finished = false;
         List<Question> questions = new ArrayList<Question>();
@@ -123,7 +134,8 @@ public class SetupClient {
             int size = Integer.parseInt(sc.nextLine());
             while (size < 3) {
                 System.out.println("Please enter a number greater than or equal to 3: ");
-                size = Integer.parseInt(sc.nextLine());
+
+
             }
             List<String> possibleAnswers = new ArrayList<String>();
             String answer = null;
