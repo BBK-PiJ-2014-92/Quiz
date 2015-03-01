@@ -126,15 +126,15 @@ public class SetupClient {
                 size = Integer.parseInt(sc.nextLine());
             }
             List<String> possibleAnswers = new ArrayList<String>();
-            String answer = sc.nextLine();
+            String answer = null;
             for (int i = 0; i < size; i++) {
+                answer = sc.nextLine();
                 answer = whileBlank(answer, sc);
                 possibleAnswers.add(answer);
-                answer = sc.nextLine();
             }
             Question q = new QuestionImpl(question, correctAnswer, possibleAnswers);
             System.out.println("Add another question? Y/N");
-            String yesOrNo = answer;
+            String yesOrNo = sc.nextLine();
             if (yesOrNo.equals("Y") || yesOrNo.equals("y")) {
                 questions.add(q);
             }else { //Interpret every other answer as no, in order to save the progress made
