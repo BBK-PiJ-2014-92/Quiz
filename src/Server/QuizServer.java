@@ -152,6 +152,8 @@ public class QuizServer extends UnicastRemoteObject implements QuizService {
             output.reset(); // Similar to deleting the file, this just resets what is currently available in the file
             output.writeObject(quizzes);
             System.out.println("Quizzes successfully written");
+            output.writeObject(quizIDs);
+            System.out.println("Quiz IDs successfully written");
             output.close();
             fos.close();
         } catch (FileNotFoundException e) {
